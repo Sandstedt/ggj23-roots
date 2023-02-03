@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Wand
+  - WandUI
+  - Interact
+  - Interactable
+  - Pointer
+  - Glasses
   layers:
   - Default
   - TransparentFX
@@ -13,14 +19,14 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Interactable
+  - Menu
+  - UIWand
+  - Pointer
+  - Wand
+  - Player 1
+  - Player 2
+  - Player 3
   - 
   - 
   - 
@@ -38,6 +44,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UI
+    uniqueID: 3116835763
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Elements
+    uniqueID: 3102058085
+    locked: 0
+  - name: OverlayUI
+    uniqueID: 4089038681
     locked: 0
