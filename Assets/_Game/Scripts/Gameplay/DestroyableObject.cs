@@ -27,7 +27,7 @@ public class DestroyableObject : MonoBehaviour
         {
             Debug.Log("Tree damaged: " + missile.damage + " / " + healthCurrent);
 
-            Damage(missile.damage, missile.transform.position);
+            Damage(missile.damage, collision.transform.position);
             missile.MissileHitObject();
         }
     }

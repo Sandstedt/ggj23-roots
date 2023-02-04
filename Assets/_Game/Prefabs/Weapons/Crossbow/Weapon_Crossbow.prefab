@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2343583248092339598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -268.54938, y: 7.4193406, z: -250.75}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2343583248713511866}
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88a9dc77c6ff454e8c25dbb291c6aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firingTime: 1
-  firingForceRight: -1000
+  firingTime: 5
+  firingForceRight: -8000
   firingForceUp: 2
   arrowToSpawn: {fileID: 5577095468007373934, guid: 0896f230f4c3b214087f8cbe51225f2b,
     type: 3}
