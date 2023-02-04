@@ -19,6 +19,7 @@ namespace _Game.Scripts
         [SerializeField] private Camera playerCamera;
         [SerializeField] private GameObject currentPlayerModel;
         private Vector3 movementDirection;
+        
 
         // [SerializeField] private float movementSpeed;
 
@@ -52,8 +53,6 @@ namespace _Game.Scripts
             {
                 move = movementDirection;
             }
-
-            controller.Move(move * (Time.deltaTime * playerSpeed));
 
             if (move != Vector3.zero)
             {
@@ -104,6 +103,26 @@ namespace _Game.Scripts
         public void OnMove(Vector2 direction)
         {
             movementDirection = new Vector3(direction.x, 0, direction.y);
+        }
+        
+        public void RespawnPlayer(GameObject model, Vector3 respawnPos)
+        {
+            Debug.Log("setting model: " + model.name);
+            var oldModel = currentPlayerModel;
+            var newModel = Instantiate(model, currentPlayerModel.transform.position, currentPlayerModel.transform.rotation);
+            currentPlayerModel.gameObject.SetActive(false);
+
+
+            currentPlayerModel = newModel;
+            currentPlayerModel.transform.parent = transform;
+            currentPlayerModel.gameObject.SetActive(true);
+
+            animancer.Animator = newModel.GetComponent<Animator>();
+            plrAnimations = newModel.GetComponent<PlayerAnimations>();
+
+            transform.position = respawnPos;
+
+            Destroy(oldModel);
         }
 
         // public void Move()
