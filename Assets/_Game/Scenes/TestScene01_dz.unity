@@ -26285,6 +26285,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1025309429}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1029344732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4736421414538297311, guid: 12784f226222d694290cc96e5d6eea11,
+    type: 3}
+  m_PrefabInstance: {fileID: 9066917892590455168}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1034871540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30722,6 +30728,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CharacterRespawner - Team 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065917247860385231, guid: 8ac418093a7c7604fa3af0cfeb2f5c8b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ac418093a7c7604fa3af0cfeb2f5c8b, type: 3}
@@ -48902,7 +48913,7 @@ PrefabInstance:
         type: 3}
       propertyPath: listPlayerModels.Array.data[0]
       value: 
-      objectReference: {fileID: 2974780388344300392, guid: 28eb0349ad9aee744a560bcce39fe171,
+      objectReference: {fileID: 2974780388344300392, guid: a4a64cadfa73341439863305fcb5dd35,
         type: 3}
     - target: {fileID: 8065917247860385228, guid: 8ac418093a7c7604fa3af0cfeb2f5c8b,
         type: 3}
@@ -49004,6 +49015,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 9066917891857753198, guid: 12784f226222d694290cc96e5d6eea11,
+        type: 3}
+      propertyPath: currentPlayerModel
+      value: 
+      objectReference: {fileID: 1029344732}
     - target: {fileID: 9066917891857753201, guid: 12784f226222d694290cc96e5d6eea11,
         type: 3}
       propertyPath: m_RootOrder

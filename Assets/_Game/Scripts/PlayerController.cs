@@ -17,11 +17,13 @@ namespace _Game.Scripts
         [SerializeField] private AnimancerComponent animancer;
         // [SerializeField] private Rigidbody rb;
         [SerializeField] private Camera playerCamera;
+        [SerializeField] private GameObject currentPlayerModel;
         private Vector2 movementDirection;
 
         // [SerializeField] private float movementSpeed;
 
         public PlayerAnimations plrAnimations;
+
 
 
         void Update()
@@ -89,8 +91,19 @@ namespace _Game.Scripts
 
         public void SetModel(GameObject model)
         {
-            animancer.Animator = model.GetComponent<Animator>();
-            plrAnimations = model.GetComponent<PlayerAnimations>();
+            Debug.Log("setting model: " + model.name);
+            var oldModel = currentPlayerModel;
+            var newModel = Instantiate(model, currentPlayerModel.transform.position, currentPlayerModel.transform.rotation);
+            currentPlayerModel.gameObject.SetActive(false);
+
+
+            currentPlayerModel = newModel;
+            currentPlayerModel.transform.parent = transform;
+            currentPlayerModel.gameObject.SetActive(true);
+
+            animancer.Animator = newModel.GetComponent<Animator>();
+            plrAnimations = newModel.GetComponent<PlayerAnimations>();
+            Destroy(oldModel);
         }
 
         // public void Move()

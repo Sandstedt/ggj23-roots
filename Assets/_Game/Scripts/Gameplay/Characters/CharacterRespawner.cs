@@ -7,7 +7,7 @@ namespace Assets._Game.Scripts.Gameplay
 {
     public class CharacterRespawner : MonoBehaviour
     {
-        private int nrSpawned = 0;
+        public int nrSpawned = 0;
 
         [SerializeField] CharacterTeam team;
 
@@ -15,12 +15,21 @@ namespace Assets._Game.Scripts.Gameplay
 
         [SerializeField] PlayerController plrController;
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RespawnCharacter();
+            }
+        }
+
         public void RespawnCharacter()
         {
-            nrSpawned++;
-            if (listPlayerModels != null && listPlayerModels.Count < nrSpawned)
+            Debug.Log(" listPlayerModels.Count: " + listPlayerModels.Count);
+            if (listPlayerModels != null && nrSpawned < listPlayerModels.Count)
             {
                 SpawnNewCharacter();
+                nrSpawned++;
             }
         }
 
