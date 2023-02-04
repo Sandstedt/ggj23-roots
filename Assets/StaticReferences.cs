@@ -8,7 +8,8 @@ using UnityEngine;
 public class StaticReferences : MonoBehaviour
 {
     public static StaticReferences Instance;
-    
+    public bool isKeyboard = false;
+
     public Camera playerCamera;
     [SerializeField] private Transform player1spawnPosition;
     [SerializeField] private Transform player2spawnPosition;
@@ -18,6 +19,12 @@ public class StaticReferences : MonoBehaviour
     {
         playerSpawnPositions.Add(CharacterTeam.team1, player1spawnPosition);
         playerSpawnPositions.Add(CharacterTeam.team2, player2spawnPosition);
+
+        if (isKeyboard)
+        {
+            playerCamera.transform.position += playerCamera.transform.forward * -40;
+        }
+
         if (Instance == null)
         {
             Instance = this;

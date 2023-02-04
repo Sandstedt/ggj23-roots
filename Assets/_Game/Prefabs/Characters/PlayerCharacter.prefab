@@ -307,7 +307,7 @@ MonoBehaviour:
   playerSpeed: 50
   jumpHeight: 1
   gravityValue: -9.81
-  keyboard: 0
+  keyboard: 1
   animancer: {fileID: 6120749739880312865}
   playerCamera: {fileID: 0}
   currentPlayerModel: {fileID: 4736421414538297311}
@@ -364,6 +364,7 @@ MonoBehaviour:
   spawnOnDeath: {fileID: 5825486382688757681, guid: 915ac0bf97f02a24a944693917679074,
     type: 3}
   characterRespawner: {fileID: 0}
+  playerHealthBarModel: {fileID: 0}
 --- !u!1001 &7562578612836383927
 PrefabInstance:
   m_ObjectHideFlags: 0

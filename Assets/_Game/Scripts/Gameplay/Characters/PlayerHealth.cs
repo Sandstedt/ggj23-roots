@@ -13,12 +13,12 @@ public class PlayerHealth : MonoBehaviour
 
     public CharacterRespawner characterRespawner;
 
-    [SerializeField] PlayerHealthBarModel playerHealthBarModel;
-
+    private PlayerHealthBarModel playerHealthBarModel;
 
     private void Start()
     {
         healthCurrent = healthMax;
+        playerHealthBarModel = characterRespawner.GetComponentInChildren<PlayerHealthBarModel>();
     }
 
     private void Update()

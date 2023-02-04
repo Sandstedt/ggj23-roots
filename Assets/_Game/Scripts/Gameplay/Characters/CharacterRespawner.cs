@@ -16,7 +16,7 @@ namespace Assets._Game.Scripts.Gameplay
 
         [SerializeField] PlayerController plrController;
         [SerializeField] private GameObject playerPrefab;
-        
+
 
         [SerializeField] Transform respawnPos;
 
@@ -29,8 +29,16 @@ namespace Assets._Game.Scripts.Gameplay
             plrController.transform.position = respawnPos.position;
             plrController.transform.rotation = respawnPos.rotation;
             plrController.playerHealth.characterRespawner = this;
-            plrController.playerCamera = this.gameObject.transform.parent.transform.Find("Left Eye Camera")
+            if (StaticReferences.Instance.isKeyboard)
+            {
+                plrController.playerCamera = Camera.main;
+            }
+            else
+            {
+                plrController.playerCamera = this.gameObject.transform.parent.transform.Find("Left Eye Camera")
                 .GetComponent<Camera>();
+            }
+
             Debug.Log("Instatiate " + p.name);
         }
 

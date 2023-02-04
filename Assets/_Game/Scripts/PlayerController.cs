@@ -13,14 +13,13 @@ namespace _Game.Scripts
         [SerializeField] private float playerSpeed = 2.0f;
         [SerializeField] private float jumpHeight = 1.0f;
         [SerializeField] private float gravityValue = -9.81f;
-        [SerializeField] private bool keyboard;
 
         [SerializeField] private AnimancerComponent animancer;
         // [SerializeField] private Rigidbody rb;
         public Camera playerCamera;
         [SerializeField] private GameObject currentPlayerModel;
         private Vector3 movementDirection;
-        
+
 
         // [SerializeField] private float movementSpeed;
 
@@ -28,23 +27,6 @@ namespace _Game.Scripts
 
         public PlayerHealth playerHealth;
 
-        private void GetCamera()
-        {
-            if (keyboard)
-            {
-                playerCamera = Camera.main;
-            }
-            else
-            {
-                playerCamera = StaticReferences.Instance.playerCamera;
-            }
-        }
-
-        private void Awake()
-        {
-            GetCamera();
-            Debug.Log("PlayerController Awake - camera " + playerCamera.name);
-        }
 
         void Update()
         {
@@ -53,19 +35,19 @@ namespace _Game.Scripts
             {
                 playerVelocity.y = 0f;
             }
-            
+
             var _camera = playerCamera.transform;
-            
+
             var forward = _camera.forward;
             forward.y = 0;
             forward.Normalize();
-            
+
             var right = _camera.right;
             right.y = 0;
             right.Normalize();
-            
+
             Vector3 move = Vector3.zero;
-            if (keyboard)
+            if (StaticReferences.Instance.isKeyboard)
             {
                 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             }
@@ -73,11 +55,11 @@ namespace _Game.Scripts
             {
                 move = movementDirection;
             }
-            
+
             if (move != Vector3.zero)
             {
                 var normalizedMove = right * move.x + forward * move.z;
-                
+
                 // gameObject.transform.forward = move + forward;
                 gameObject.transform.forward = normalizedMove;
                 playerVelocity.x = normalizedMove.x * playerSpeed;
@@ -88,13 +70,13 @@ namespace _Game.Scripts
             {
                 animancer.Play(plrAnimations.AnimIdle, 0.2f);
             }
-            
+
             // Changes the height position of the player..
             if (Input.GetButtonDown("Jump") && groundedPlayer)
             {
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
             }
-            
+
             playerVelocity.y += gravityValue * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
             movementDirection = Vector3.zero;
@@ -125,7 +107,7 @@ namespace _Game.Scripts
             Debug.Log("moving " + direction.x + " " + direction.y);
             movementDirection = new Vector3(direction.x, 0, direction.y);
         }
-        
+
         public void RespawnPlayer(GameObject model, Vector3 respawnPos)
         {
             Debug.Log("setting model: " + model.name);
