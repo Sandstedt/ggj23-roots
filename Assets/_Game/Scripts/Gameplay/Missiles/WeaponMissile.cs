@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets._Game.Scripts.Gameplay.Characters;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets._Game.Scripts.Gameplay.Missiles
@@ -6,6 +7,12 @@ namespace Assets._Game.Scripts.Gameplay.Missiles
     public class WeaponMissile : MonoBehaviour
     {
         public int damage = 5;
+
+        public void SetIgnoreObject(Collider plrCollider)
+        {
+            Physics.IgnoreCollision(plrCollider, collisionCollider);
+
+        }
 
         [SerializeField] Collider collisionCollider;
         void Awake()

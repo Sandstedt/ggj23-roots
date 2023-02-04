@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
 
     private PlayerHealthBarModel playerHealthBarModel;
 
+
     private void Start()
     {
         healthCurrent = healthMax;
