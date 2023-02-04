@@ -1096,6 +1096,7 @@ MonoBehaviour:
   AnimWalk: {fileID: 7400000, guid: 958bd2cccfa87b74a9a880ee35f4f534, type: 3}
   AnimAttackMelee: {fileID: 7400000, guid: 470701484e352274bbde411212de5515, type: 3}
   AnimAttackShoot: {fileID: 7400004, guid: 470701484e352274bbde411212de5515, type: 3}
+  AnimJump: {fileID: 7400000, guid: 8ba2178ed4716f348b34190ecf5d365e, type: 3}
 --- !u!1 &2974785321241375412
 GameObject:
   m_ObjectHideFlags: 0
