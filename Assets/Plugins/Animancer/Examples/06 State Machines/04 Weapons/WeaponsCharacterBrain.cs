@@ -62,6 +62,7 @@ namespace Animancer.Examples.StateMachines
 
         private void T5UpdateMovement()
         {
+            
             var input = movementDirection;
             if (input != default)
             {
