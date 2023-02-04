@@ -307,7 +307,7 @@ MonoBehaviour:
   playerSpeed: 50
   jumpHeight: 1
   gravityValue: -9.81
-  keyboard: 1
+  keyboard: 0
   animancer: {fileID: 6120749739880312865}
   playerCamera: {fileID: 0}
   currentPlayerModel: {fileID: 4736421414538297311}

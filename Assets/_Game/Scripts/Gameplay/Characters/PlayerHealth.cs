@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject spawnOnDamage;
     [SerializeField] GameObject spawnOnDeath;
 
-    [SerializeField] CharacterRespawner characterRespawner;
+    public CharacterRespawner characterRespawner;
 
 
     private void Start()

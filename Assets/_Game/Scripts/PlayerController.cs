@@ -1,4 +1,5 @@
-﻿using Animancer;
+﻿using System;
+using Animancer;
 using Assets._Game.Scripts.Gameplay.Characters;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace _Game.Scripts
 
         [SerializeField] private AnimancerComponent animancer;
         // [SerializeField] private Rigidbody rb;
-        [SerializeField] private Camera playerCamera;
+        public Camera playerCamera;
         [SerializeField] private GameObject currentPlayerModel;
         private Vector3 movementDirection;
         
@@ -25,8 +26,25 @@ namespace _Game.Scripts
 
         public PlayerAnimations plrAnimations;
 
-        [SerializeField] PlayerHealth playerHealth;
+        public PlayerHealth playerHealth;
 
+        private void GetCamera()
+        {
+            if (keyboard)
+            {
+                playerCamera = Camera.main;
+            }
+            else
+            {
+                playerCamera = StaticReferences.Instance.playerCamera;
+            }
+        }
+
+        private void Awake()
+        {
+            GetCamera();
+            Debug.Log("PlayerController Awake - camera " + playerCamera.name);
+        }
 
         void Update()
         {
@@ -45,7 +63,7 @@ namespace _Game.Scripts
             var right = _camera.right;
             right.y = 0;
             right.Normalize();
-
+            
             Vector3 move = Vector3.zero;
             if (keyboard)
             {
@@ -55,7 +73,7 @@ namespace _Game.Scripts
             {
                 move = movementDirection;
             }
-
+            
             if (move != Vector3.zero)
             {
                 var normalizedMove = right * move.x + forward * move.z;
@@ -70,13 +88,13 @@ namespace _Game.Scripts
             {
                 animancer.Play(plrAnimations.AnimIdle, 0.2f);
             }
-
+            
             // Changes the height position of the player..
             if (Input.GetButtonDown("Jump") && groundedPlayer)
             {
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
             }
-
+            
             playerVelocity.y += gravityValue * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
             movementDirection = Vector3.zero;
@@ -104,6 +122,7 @@ namespace _Game.Scripts
 
         public void OnMove(Vector2 direction)
         {
+            Debug.Log("moving " + direction.x + " " + direction.y);
             movementDirection = new Vector3(direction.x, 0, direction.y);
         }
         

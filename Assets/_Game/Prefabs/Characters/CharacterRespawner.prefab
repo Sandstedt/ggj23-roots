@@ -130,6 +130,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nrSpawned: 0
   team: 0
-  listPlayerModels: []
+  listPlayerModels:
+  - {fileID: 0}
+  - {fileID: 0}
   plrController: {fileID: 0}
+  playerPrefab: {fileID: 9066917891857753196, guid: 12784f226222d694290cc96e5d6eea11,
+    type: 3}
   respawnPos: {fileID: 3076672058506942091}
