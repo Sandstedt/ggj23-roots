@@ -26285,12 +26285,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1025309429}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1029344732 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4736421414538297311, guid: 12784f226222d694290cc96e5d6eea11,
-    type: 3}
-  m_PrefabInstance: {fileID: 9066917892590455168}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1034871540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48990,43 +48984,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5276111559837134034, guid: 12784f226222d694290cc96e5d6eea11,
-        type: 3}
-      propertyPath: firingForceRight
-      value: -6000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5276111559837134035, guid: 12784f226222d694290cc96e5d6eea11,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5276111559837134035, guid: 12784f226222d694290cc96e5d6eea11,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5276111559837134035, guid: 12784f226222d694290cc96e5d6eea11,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7821141565297859108, guid: 12784f226222d694290cc96e5d6eea11,
-        type: 3}
-      propertyPath: spawnOnDeath
-      value: 
-      objectReference: {fileID: 5825486382688757681, guid: 915ac0bf97f02a24a944693917679074,
-        type: 3}
-    - target: {fileID: 7821141565297859108, guid: 12784f226222d694290cc96e5d6eea11,
-        type: 3}
-      propertyPath: healthCurrent
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7821141565297859108, guid: 12784f226222d694290cc96e5d6eea11,
-        type: 3}
-      propertyPath: spawnOnDamage
-      value: 
-      objectReference: {fileID: 5825486382688757681, guid: f061caf66dcdd16499ac6306bc07969f,
-        type: 3}
     - target: {fileID: 7821141565297859108, guid: 12784f226222d694290cc96e5d6eea11,
         type: 3}
       propertyPath: characterRespawner
@@ -49039,9 +48996,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9066917891857753198, guid: 12784f226222d694290cc96e5d6eea11,
         type: 3}
-      propertyPath: currentPlayerModel
+      propertyPath: playerCamera
       value: 
-      objectReference: {fileID: 1029344732}
+      objectReference: {fileID: 5096850156603844997}
     - target: {fileID: 9066917891857753201, guid: 12784f226222d694290cc96e5d6eea11,
         type: 3}
       propertyPath: m_RootOrder
