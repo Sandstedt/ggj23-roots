@@ -90,10 +90,9 @@ MonoBehaviour:
   _onOnePressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9066917891857753196}
-        m_TargetAssemblyTypeName: Animancer.Examples.StateMachines.WeaponsCharacterBrain,
-          Animancer.Examples
-        m_MethodName: 
+      - m_Target: {fileID: 9066917891857753198}
+        m_TargetAssemblyTypeName: _Game.Scripts.PlayerController, Assembly-CSharp
+        m_MethodName: Jump
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -112,10 +111,9 @@ MonoBehaviour:
   _onTwoPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9066917891857753196}
-        m_TargetAssemblyTypeName: Animancer.Examples.StateMachines.WeaponsCharacterBrain,
-          Animancer.Examples
-        m_MethodName: 
+      - m_Target: {fileID: 9066917891857753198}
+        m_TargetAssemblyTypeName: _Game.Scripts.PlayerController, Assembly-CSharp
+        m_MethodName: Jump
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -142,9 +140,6 @@ MonoBehaviour:
       m_Calls: []
   _onTriggerDown:
     m_PersistentCalls:
-      m_Calls: []
-  _onTriggerPressed:
-    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8454382400320504853}
         m_TargetAssemblyTypeName: WeaponShoot, Assembly-CSharp
@@ -158,6 +153,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _onTriggerPressed:
+    m_PersistentCalls:
+      m_Calls: []
   _onTriggerReleased:
     m_PersistentCalls:
       m_Calls: []
@@ -305,9 +303,8 @@ MonoBehaviour:
   playerVelocity: {x: 0, y: 0, z: 0}
   groundedPlayer: 0
   playerSpeed: 50
-  jumpHeight: 1
-  gravityValue: -9.81
-  keyboard: 1
+  jumpHeight: 5
+  gravityValue: -150
   animancer: {fileID: 6120749739880312865}
   playerCamera: {fileID: 0}
   currentPlayerModel: {fileID: 4736421414538297311}
@@ -364,7 +361,6 @@ MonoBehaviour:
   spawnOnDeath: {fileID: 5825486382688757681, guid: 915ac0bf97f02a24a944693917679074,
     type: 3}
   characterRespawner: {fileID: 0}
-  playerHealthBarModel: {fileID: 0}
 --- !u!1001 &7562578612836383927
 PrefabInstance:
   m_ObjectHideFlags: 0

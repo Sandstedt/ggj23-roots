@@ -28,6 +28,11 @@ namespace _Game.Scripts
         public PlayerHealth playerHealth;
 
 
+        public void Jump()
+        {
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+        }
+
         void Update()
         {
             groundedPlayer = controller.isGrounded;
@@ -64,17 +69,17 @@ namespace _Game.Scripts
                 gameObject.transform.forward = normalizedMove;
                 playerVelocity.x = normalizedMove.x * playerSpeed;
                 playerVelocity.z = normalizedMove.z * playerSpeed;
-                animancer.Play(plrAnimations.AnimWalk, 0.2f);
+                animancer.Play(groundedPlayer ?  plrAnimations.AnimWalk : plrAnimations.AnimJump, 0.2f);
             }
             else
             {
-                animancer.Play(plrAnimations.AnimIdle, 0.2f);
+                animancer.Play(groundedPlayer ? plrAnimations.AnimIdle :  plrAnimations.AnimJump, 0.2f);
             }
 
             // Changes the height position of the player..
             if (Input.GetButtonDown("Jump") && groundedPlayer)
             {
-                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+                Jump();
             }
 
             playerVelocity.y += gravityValue * Time.deltaTime;
