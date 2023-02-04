@@ -65,7 +65,6 @@ namespace Animancer.Examples.StateMachines
 
         public void OnStickMoved(Vector2 direction)
         {
-            Debug.Log("OnStickMoved x: " + direction.x + " y: " + direction.y);
             movementDirection = direction;
         }
 

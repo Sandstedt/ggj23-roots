@@ -17,7 +17,7 @@ namespace _Game.Scripts
         [SerializeField] private AnimancerComponent animancer;
         // [SerializeField] private Rigidbody rb;
         [SerializeField] private Camera playerCamera;
-        private Vector2 movementDirection;
+        private Vector3 movementDirection;
 
         // [SerializeField] private float movementSpeed;
 
@@ -31,22 +31,43 @@ namespace _Game.Scripts
             {
                 playerVelocity.y = 0f;
             }
+            
+            var _camera = playerCamera.transform;
+            
+            var forward = _camera.forward;
+            forward.y = 0;
+            forward.Normalize();
+            
+            var right = _camera.right;
+            right.y = 0;
+            right.Normalize();
+            //
+            // // rb.transform.rotation = Quaternion.LookRotation(forward);
+            // // Debug.Log(movementDirection);
+            // // rb.AddForce(movementDirection * (movementSpeed * Time.deltaTime));
 
             Vector3 move = Vector3.zero;
+            Debug.Log(forward);
             if (keyboard)
             {
-                move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                move = new Vector3(Input.GetAxis("Horizontal") , 0, Input.GetAxis("Vertical"));
             }
             else
             {
+                // move = movementDirection;
                 move = movementDirection;
             }
 
-            controller.Move(move * (Time.deltaTime * playerSpeed));
+            // controller.Move(move * (Time.deltaTime * playerSpeed));
 
             if (move != Vector3.zero)
             {
-                gameObject.transform.forward = move;
+                var normalizedMove = right * move.x + forward * move.z;
+                
+                // gameObject.transform.forward = move + forward;
+                gameObject.transform.forward = normalizedMove;
+                playerVelocity.x = normalizedMove.x * playerSpeed;
+                playerVelocity.z = normalizedMove.z * playerSpeed;
                 animancer.Play(plrAnimations.AnimWalk, 0.2f);
             }
             else
@@ -62,6 +83,9 @@ namespace _Game.Scripts
 
             playerVelocity.y += gravityValue * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
+            movementDirection = Vector3.zero;
+            playerVelocity.x = 0;
+            playerVelocity.z = 0;
         }
 
 
@@ -84,7 +108,7 @@ namespace _Game.Scripts
 
         public void OnMove(Vector2 direction)
         {
-            movementDirection = direction;
+            movementDirection = new Vector3(direction.x, 0, direction.y);
         }
 
         // public void Move()
