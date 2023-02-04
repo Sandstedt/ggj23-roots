@@ -145,7 +145,19 @@ MonoBehaviour:
       m_Calls: []
   _onTriggerPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8454382400320504853}
+        m_TargetAssemblyTypeName: WeaponShoot, Assembly-CSharp
+        m_MethodName: FireWeapon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onTriggerReleased:
     m_PersistentCalls:
       m_Calls: []
@@ -295,7 +307,7 @@ MonoBehaviour:
   playerSpeed: 50
   jumpHeight: 1
   gravityValue: -9.81
-  keyboard: 1
+  keyboard: 0
   animancer: {fileID: 6120749739880312865}
   playerCamera: {fileID: 0}
   currentPlayerModel: {fileID: 4736421414538297311}
@@ -451,3 +463,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7562578612836383927}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8454382400320504853 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2134797284909463714, guid: 28eb0349ad9aee744a560bcce39fe171,
+    type: 3}
+  m_PrefabInstance: {fileID: 7562578612836383927}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88a9dc77c6ff454e8c25dbb291c6aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

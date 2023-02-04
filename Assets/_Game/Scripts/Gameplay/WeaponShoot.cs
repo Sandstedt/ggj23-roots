@@ -32,6 +32,7 @@ public class WeaponShoot : MonoBehaviour
 
     public void FireWeapon()
     {
+        Debug.Log("FireWeapon");
         if (canFire)
         {
             soundShoot.PlayRandomSound();

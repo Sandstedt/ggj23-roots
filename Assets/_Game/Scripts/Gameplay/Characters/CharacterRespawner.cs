@@ -1,4 +1,5 @@
-﻿using _Game.Scripts;
+﻿using System;
+using _Game.Scripts;
 using Assets._Game.Scripts.Gameplay.Characters;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,9 +15,24 @@ namespace Assets._Game.Scripts.Gameplay
         [SerializeField] List<GameObject> listPlayerModels;
 
         [SerializeField] PlayerController plrController;
+        [SerializeField] private GameObject playerPrefab;
+        
 
         [SerializeField] Transform respawnPos;
 
+
+        private void Start()
+        {
+            respawnPos = StaticReferences.Instance.playerSpawnPositions[team];
+            var p = Instantiate(playerPrefab, respawnPos.position, respawnPos.rotation);
+            plrController = p.GetComponent<PlayerController>();
+            plrController.transform.position = respawnPos.position;
+            plrController.transform.rotation = respawnPos.rotation;
+            plrController.playerHealth.characterRespawner = this;
+            plrController.playerCamera = this.gameObject.transform.parent.transform.Find("Left Eye Camera")
+                .GetComponent<Camera>();
+            Debug.Log("Instatiate " + p.name);
+        }
 
         public void RespawnCharacter()
         {
