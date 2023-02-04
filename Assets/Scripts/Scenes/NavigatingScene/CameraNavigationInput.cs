@@ -277,7 +277,6 @@ namespace TiltFiveDemos
         /// <param name="pTranslateValue"></param>
         public void SetT5TranslateInput(Vector2 pTranslateValue)
         {
-            Debug.Log("Moving: "+pTranslateValue);
             _translateT5Wand = true;
             _translateValue = new Vector2(-pTranslateValue.x, pTranslateValue.y);
         }
