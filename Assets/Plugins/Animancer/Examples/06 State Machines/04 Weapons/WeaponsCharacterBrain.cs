@@ -25,6 +25,8 @@ namespace Animancer.Examples.StateMachines
         [SerializeField, Seconds] private float _InputTimeOut = 0.5f;
         [SerializeField] private EquipState _Equip;
         [SerializeField] private Weapon[] _Weapons;
+        [SerializeField] private Camera playerCamera;
+        
 
         private StateMachine<CharacterState>.InputBuffer _InputBuffer;
 
@@ -34,12 +36,14 @@ namespace Animancer.Examples.StateMachines
         {
             _InputBuffer = new StateMachine<CharacterState>.InputBuffer(_Character.StateMachine);
         }
+        
 
         /************************************************************************************************************************/
 
         private void Update()
         {
-            UpdateMovement();
+            T5UpdateMovement();
+            // UpdateMovement();
             UpdateEquip();
             UpdateAction();
 
@@ -47,6 +51,49 @@ namespace Animancer.Examples.StateMachines
         }
 
         /************************************************************************************************************************/
+        
+        [SerializeField] private Vector3 movementDirection;
+
+
+        public void OnStickMoved(Vector2 direction)
+        {
+            movementDirection = direction;
+        }
+
+        private void T5UpdateMovement()
+        {
+            var input = movementDirection;
+            if (input != default)
+            {
+                // Get the camera's forward and right vectors and flatten them onto the XZ plane.
+                var camera = playerCamera.transform;
+
+                var forward = camera.forward;
+                forward.y = 0;
+                forward.Normalize();
+
+                var right = camera.right;
+                right.y = 0;
+                right.Normalize();
+
+                // Build the movement vector by multiplying the input by those axes.
+                _Character.Parameters.MovementDirection =
+                    right * input.x +
+                    forward * input.y;
+
+                // Enter the locomotion state if we aren't already in it.
+                _Character.StateMachine.TrySetState(_Move);
+                movementDirection = Vector3.zero;
+            }
+            else
+            {
+                _Character.Parameters.MovementDirection = default;
+                _Character.StateMachine.TrySetDefaultState();
+            }
+
+            // Indicate whether the character wants to run or not.
+            // _Character.Parameters.WantsToRun = ExampleInput.LeftShiftHold;
+        }
 
         private void UpdateMovement()// This method is identical to the one in MovingCharacterBrain.
         {
@@ -54,7 +101,7 @@ namespace Animancer.Examples.StateMachines
             if (input != default)
             {
                 // Get the camera's forward and right vectors and flatten them onto the XZ plane.
-                var camera = Camera.main.transform;
+                var camera = playerCamera.transform;
 
                 var forward = camera.forward;
                 forward.y = 0;
