@@ -75,5 +75,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8234824881d2443a4bb4ed94d80d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnOnDeath: {fileID: 0}
-  healthMax: 0
+  spawnOnDamage: {fileID: 5825486382688757681, guid: acf4bc20227b21e46a13878f3812f78c,
+    type: 3}
+  spawnOnDeath: {fileID: 5825486382688757681, guid: 7ecb38e3bf0c8bc40bf5c3040309ccc9,
+    type: 3}
+  characterRespawner: {fileID: 0}
+  healthMax: 15
