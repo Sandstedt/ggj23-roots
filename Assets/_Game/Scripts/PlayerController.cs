@@ -18,14 +18,14 @@ namespace _Game.Scripts
         // [SerializeField] private Rigidbody rb;
         [SerializeField] private Camera playerCamera;
         [SerializeField] private GameObject currentPlayerModel;
-        private Vector2 movementDirection;
+        private Vector3 movementDirection;
+        
 
         // [SerializeField] private float movementSpeed;
 
         public PlayerAnimations plrAnimations;
 
         [SerializeField] PlayerHealth playerHealth;
-
 
 
         void Update()
@@ -35,6 +35,16 @@ namespace _Game.Scripts
             {
                 playerVelocity.y = 0f;
             }
+            
+            var _camera = playerCamera.transform;
+            
+            var forward = _camera.forward;
+            forward.y = 0;
+            forward.Normalize();
+            
+            var right = _camera.right;
+            right.y = 0;
+            right.Normalize();
 
             Vector3 move = Vector3.zero;
             if (keyboard)
@@ -46,11 +56,14 @@ namespace _Game.Scripts
                 move = movementDirection;
             }
 
-            controller.Move(move * (Time.deltaTime * playerSpeed));
-
             if (move != Vector3.zero)
             {
-                gameObject.transform.forward = move;
+                var normalizedMove = right * move.x + forward * move.z;
+                
+                // gameObject.transform.forward = move + forward;
+                gameObject.transform.forward = normalizedMove;
+                playerVelocity.x = normalizedMove.x * playerSpeed;
+                playerVelocity.z = normalizedMove.z * playerSpeed;
                 animancer.Play(plrAnimations.AnimWalk, 0.2f);
             }
             else
@@ -66,6 +79,9 @@ namespace _Game.Scripts
 
             playerVelocity.y += gravityValue * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
+            movementDirection = Vector3.zero;
+            playerVelocity.x = 0;
+            playerVelocity.z = 0;
         }
 
 
@@ -88,9 +104,9 @@ namespace _Game.Scripts
 
         public void OnMove(Vector2 direction)
         {
-            movementDirection = direction;
+            movementDirection = new Vector3(direction.x, 0, direction.y);
         }
-
+        
         public void RespawnPlayer(GameObject model, Vector3 respawnPos)
         {
             Debug.Log("setting model: " + model.name);
