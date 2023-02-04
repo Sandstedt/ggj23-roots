@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets._Game.Scripts.Effects
@@ -7,14 +8,22 @@ namespace Assets._Game.Scripts.Effects
     {
         [SerializeField] float timedLife;
 
-        void Start()
+        [SerializeField] List<ParticleSystem> particles;
+
+        void Awake()
         {
+
             //Start the coroutine we define below named ExampleCoroutine.
             StartCoroutine(DieAfterTime());
         }
 
         IEnumerator DieAfterTime()
         {
+            //foreach (var particle in particles)
+            //{
+            //    particle.Play();
+            //}
+
             //yield on a new YieldInstruction that waits for 5 seconds.
             yield return new WaitForSeconds(timedLife);
 

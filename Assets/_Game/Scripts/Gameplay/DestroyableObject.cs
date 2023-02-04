@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DestroyableObject : MonoBehaviour
@@ -11,6 +12,16 @@ public class DestroyableObject : MonoBehaviour
     private void Start()
     {
         healthCurrent = healthMax;
+
+        StartCoroutine(DieAfterTime());
+    }
+
+    IEnumerator DieAfterTime()
+    {
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(5);
+
+        Die();
     }
 
     public void Damage(int damage)
@@ -23,8 +34,8 @@ public class DestroyableObject : MonoBehaviour
     {
         if (spawnOnDeath != null)
         {
-            Instantiate(spawnOnDeath);
-
+            Instantiate(spawnOnDeath, transform.position, transform.rotation);
         }
+        Destroy(gameObject);
     }
 }
