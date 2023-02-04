@@ -1,4 +1,5 @@
 ﻿using Animancer;
+using Assets._Game.Scripts.Gameplay.Characters;
 using UnityEngine;
 
 namespace _Game.Scripts
@@ -12,15 +13,17 @@ namespace _Game.Scripts
         [SerializeField] private float jumpHeight = 1.0f;
         [SerializeField] private float gravityValue = -9.81f;
         [SerializeField] private bool keyboard;
-        
+
         [SerializeField] private AnimancerComponent animancer;
         // [SerializeField] private Rigidbody rb;
         [SerializeField] private Camera playerCamera;
         private Vector2 movementDirection;
-        [SerializeField] private AnimationClip animIdle;
-        [SerializeField] private AnimationClip animWalk;
+
         // [SerializeField] private float movementSpeed;
-        
+
+        public PlayerAnimations plrAnimations;
+
+
         void Update()
         {
             groundedPlayer = controller.isGrounded;
@@ -44,7 +47,7 @@ namespace _Game.Scripts
             if (move != Vector3.zero)
             {
                 gameObject.transform.forward = move;
-                animancer.Play(animWalk, 0.2f);
+                animancer.Play(plrAnimations.AnimWalk, 0.2f);
             }
             else
             {
@@ -60,8 +63,8 @@ namespace _Game.Scripts
             playerVelocity.y += gravityValue * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
         }
-    
-        
+
+
         // private void Update()
         // {
         //     if (movementDirection != Vector2.zero)
@@ -83,7 +86,7 @@ namespace _Game.Scripts
         {
             movementDirection = direction;
         }
-        
+
         // public void Move()
         // {
         //     // Get the camera's forward and right vectors and flatten them onto the XZ plane.
