@@ -298,7 +298,7 @@ MonoBehaviour:
   keyboard: 1
   animancer: {fileID: 6120749739880312865}
   playerCamera: {fileID: 0}
-  currentPlayerModel: {fileID: 0}
+  currentPlayerModel: {fileID: 4736421414538297311}
   plrAnimations: {fileID: 165803338036033924}
   playerHealth: {fileID: 7821141565297859108}
 --- !u!143 &9066917891857753197
@@ -345,10 +345,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142fd75408f1845438e80b15c4b5c127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnOnDamage: {fileID: 0}
-  spawnOnDeath: {fileID: 0}
-  characterRespawner: {fileID: 0}
+  healthCurrent: 20
   healthMax: 20
+  spawnOnDamage: {fileID: 5825486382688757681, guid: f061caf66dcdd16499ac6306bc07969f,
+    type: 3}
+  spawnOnDeath: {fileID: 5825486382688757681, guid: 915ac0bf97f02a24a944693917679074,
+    type: 3}
+  characterRespawner: {fileID: 0}
 --- !u!1001 &7562578612836383927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -424,7 +427,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7562578612836383927}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4736421414538297311}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a71958bf5e76eaf4692866a258d03fe1, type: 3}
@@ -439,6 +442,12 @@ Animator:
 --- !u!4 &4732791803662270741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2980798287763717538, guid: 28eb0349ad9aee744a560bcce39fe171,
+    type: 3}
+  m_PrefabInstance: {fileID: 7562578612836383927}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4736421414538297311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974780388344300392, guid: 28eb0349ad9aee744a560bcce39fe171,
     type: 3}
   m_PrefabInstance: {fileID: 7562578612836383927}
   m_PrefabAsset: {fileID: 0}
