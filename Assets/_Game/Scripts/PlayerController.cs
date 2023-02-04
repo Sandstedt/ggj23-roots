@@ -87,6 +87,12 @@ namespace _Game.Scripts
             movementDirection = direction;
         }
 
+        public void SetModel(GameObject model)
+        {
+            animancer.Animator = model.GetComponent<Animator>();
+            plrAnimations = model.GetComponent<PlayerAnimations>();
+        }
+
         // public void Move()
         // {
         //     // Get the camera's forward and right vectors and flatten them onto the XZ plane.

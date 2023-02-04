@@ -1,4 +1,5 @@
-﻿using Assets._Game.Scripts.Gameplay.Characters;
+﻿using _Game.Scripts;
+using Assets._Game.Scripts.Gameplay.Characters;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,12 +11,14 @@ namespace Assets._Game.Scripts.Gameplay
 
         [SerializeField] CharacterTeam team;
 
-        [SerializeField] List<GameObject> listCharacters;
+        [SerializeField] List<GameObject> listPlayerModels;
+
+        [SerializeField] PlayerController plrController;
 
         public void RespawnCharacter()
         {
             nrSpawned++;
-            if (listCharacters != null && listCharacters.Count < nrSpawned)
+            if (listPlayerModels != null && listPlayerModels.Count < nrSpawned)
             {
                 SpawnNewCharacter();
             }
@@ -23,7 +26,8 @@ namespace Assets._Game.Scripts.Gameplay
 
         private void SpawnNewCharacter()
         {
-            var character = listCharacters[nrSpawned];
+            var plrModel = listPlayerModels[nrSpawned];
+            plrController.SetModel(plrModel);
         }
     }
 }
