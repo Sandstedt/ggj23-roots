@@ -49,6 +49,10 @@ namespace _Game.Scripts
                 gameObject.transform.forward = move;
                 animancer.Play(plrAnimations.AnimWalk, 0.2f);
             }
+            else
+            {
+                animancer.Play(animIdle, 0.2f);
+            }
 
             // Changes the height position of the player..
             if (Input.GetButtonDown("Jump") && groundedPlayer)
