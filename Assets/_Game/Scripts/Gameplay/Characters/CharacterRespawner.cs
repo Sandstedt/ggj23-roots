@@ -17,13 +17,6 @@ namespace Assets._Game.Scripts.Gameplay
 
         [SerializeField] Transform respawnPos;
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                RespawnCharacter();
-            }
-        }
 
         public void RespawnCharacter()
         {

@@ -24,6 +24,8 @@ namespace _Game.Scripts
 
         public PlayerAnimations plrAnimations;
 
+        [SerializeField] PlayerHealth playerHealth;
+
 
 
         void Update()
@@ -105,6 +107,8 @@ namespace _Game.Scripts
             plrAnimations = newModel.GetComponent<PlayerAnimations>();
 
             transform.position = respawnPos;
+
+            playerHealth.PlayerRespawned();
 
             Destroy(oldModel);
         }

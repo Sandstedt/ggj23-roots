@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 9066917891857753198}
   - component: {fileID: 9066917891857753197}
   - component: {fileID: 6120749739880312865}
+  - component: {fileID: 7821141565297859108}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -297,7 +298,9 @@ MonoBehaviour:
   keyboard: 1
   animancer: {fileID: 6120749739880312865}
   playerCamera: {fileID: 0}
+  currentPlayerModel: {fileID: 0}
   plrAnimations: {fileID: 165803338036033924}
+  playerHealth: {fileID: 7821141565297859108}
 --- !u!143 &9066917891857753197
 CharacterController:
   m_ObjectHideFlags: 0
@@ -330,6 +333,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Animator: {fileID: 4678242909769602929}
   _ActionOnDisable: 0
+--- !u!114 &7821141565297859108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9066917891857753196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142fd75408f1845438e80b15c4b5c127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnOnDamage: {fileID: 0}
+  spawnOnDeath: {fileID: 0}
+  characterRespawner: {fileID: 0}
+  healthMax: 20
 --- !u!1001 &7562578612836383927
 PrefabInstance:
   m_ObjectHideFlags: 0

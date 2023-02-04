@@ -4,18 +4,26 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class DestroyableObject : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
-    private int healthCurrent;
+    [SerializeField] int healthCurrent, healthMax;
     [SerializeField] GameObject spawnOnDamage;
     [SerializeField] GameObject spawnOnDeath;
 
-    [SerializeField]
-    private int healthMax;
+    [SerializeField] CharacterRespawner characterRespawner;
+
 
     private void Start()
     {
         healthCurrent = healthMax;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Damage(5, transform.position);
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -23,7 +31,7 @@ public class DestroyableObject : MonoBehaviour
         var missile = collision.gameObject.GetComponent<WeaponMissile>();
         if (missile != null)
         {
-            Debug.Log("Tree damaged: " + missile.damage + " / " + healthCurrent);
+            Debug.Log("Player damaged: " + missile.damage + " / " + healthCurrent);
 
             Damage(missile.damage, collision.transform.position);
             missile.MissileHitObject();
@@ -53,6 +61,14 @@ public class DestroyableObject : MonoBehaviour
             Instantiate(spawnOnDeath, impactPos, transform.rotation);
         }
 
-        Destroy(gameObject);
+        if (characterRespawner != null)
+        {
+            characterRespawner.RespawnCharacter();
+        }
+    }
+
+    public void PlayerRespawned()
+    {
+        healthCurrent = healthMax;
     }
 }
