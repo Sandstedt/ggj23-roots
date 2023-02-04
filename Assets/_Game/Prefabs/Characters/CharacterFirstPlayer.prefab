@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5515191284701369979}
   - component: {fileID: 5515191284701369978}
   - component: {fileID: 5515191284701369977}
+  - component: {fileID: 2176327639634799386}
   m_Layer: 0
   m_Name: CharacterFirstPlayer
   m_TagString: Untagged
@@ -112,6 +113,20 @@ MonoBehaviour:
     _Clip: {fileID: 7400000, guid: c2ecee9424461bf4e864486b30ec0e9e, type: 2}
     _Speed: 1
     _NormalizedStartTime: NaN
+--- !u!114 &2176327639634799386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5515191284701369976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8234824881d2443a4bb4ed94d80d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnOnDeath: {fileID: 0}
+  healthMax: 50
 --- !u!1 &5515191285178991910
 GameObject:
   m_ObjectHideFlags: 0
