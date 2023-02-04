@@ -1,3 +1,4 @@
+using Assets._Game.Scripts.Gameplay;
 using Assets._Game.Scripts.Gameplay.Missiles;
 using System.Collections;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class DestroyableObject : MonoBehaviour
 {
     private int healthCurrent;
     [SerializeField] GameObject spawnOnDeath;
+
+    [SerializeField] CharacterRespawner characterRespawner;
 
     [SerializeField]
     private int healthMax;
@@ -42,6 +45,12 @@ public class DestroyableObject : MonoBehaviour
         {
             Instantiate(spawnOnDeath, transform.position, transform.rotation);
         }
+
+        if (characterRespawner != null)
+        {
+            characterRespawner.RespawnCharacter();
+        }
+
         Destroy(gameObject);
     }
 }
