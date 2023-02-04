@@ -1,4 +1,5 @@
 using Assets._Game.Scripts.Gameplay;
+using Assets._Game.Scripts.Gameplay.Characters;
 using Assets._Game.Scripts.Gameplay.Missiles;
 using System.Collections;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject spawnOnDeath;
 
     [SerializeField] CharacterRespawner characterRespawner;
+
+    [SerializeField] PlayerHealthBarModel playerHealthBarModel;
 
 
     private void Start()
@@ -47,6 +50,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
+            playerHealthBarModel.PlayerDamaged(healthCurrent);
             if (spawnOnDamage != null)
             {
                 Instantiate(spawnOnDamage, impactPos, transform.rotation);
@@ -70,5 +74,6 @@ public class PlayerHealth : MonoBehaviour
     public void PlayerRespawned()
     {
         healthCurrent = healthMax;
+        playerHealthBarModel.Restore();
     }
 }
