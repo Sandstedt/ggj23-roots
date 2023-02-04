@@ -17,6 +17,7 @@ namespace _Game.Scripts
         [SerializeField] private AnimancerComponent animancer;
         // [SerializeField] private Rigidbody rb;
         [SerializeField] private Camera playerCamera;
+        [SerializeField] private GameObject currentPlayerModel;
         private Vector3 movementDirection;
 
         // [SerializeField] private float movementSpeed;
@@ -41,24 +42,18 @@ namespace _Game.Scripts
             var right = _camera.right;
             right.y = 0;
             right.Normalize();
-            //
-            // // rb.transform.rotation = Quaternion.LookRotation(forward);
-            // // Debug.Log(movementDirection);
-            // // rb.AddForce(movementDirection * (movementSpeed * Time.deltaTime));
 
             Vector3 move = Vector3.zero;
-            Debug.Log(forward);
             if (keyboard)
             {
-                move = new Vector3(Input.GetAxis("Horizontal") , 0, Input.GetAxis("Vertical"));
+                move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             }
             else
             {
-                // move = movementDirection;
                 move = movementDirection;
             }
 
-            // controller.Move(move * (Time.deltaTime * playerSpeed));
+            controller.Move(move * (Time.deltaTime * playerSpeed));
 
             if (move != Vector3.zero)
             {

@@ -293,7 +293,7 @@ MonoBehaviour:
   playerSpeed: 50
   jumpHeight: 1
   gravityValue: -9.81
-  keyboard: 0
+  keyboard: 1
   animancer: {fileID: 9066917892075558710}
   playerCamera: {fileID: 0}
   plrAnimations: {fileID: 4478391383776923971}
@@ -322,26 +322,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9066917891857753201}
     m_Modifications:
-    - target: {fileID: 2134797284909463714, guid: 588ba6090c724414da3fe79341bef224,
-        type: 3}
-      propertyPath: firingForceRight
-      value: -6000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2134797284909463715, guid: 588ba6090c724414da3fe79341bef224,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2134797284909463715, guid: 588ba6090c724414da3fe79341bef224,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2134797284909463715, guid: 588ba6090c724414da3fe79341bef224,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2974780388344300392, guid: 588ba6090c724414da3fe79341bef224,
         type: 3}
       propertyPath: m_Name
