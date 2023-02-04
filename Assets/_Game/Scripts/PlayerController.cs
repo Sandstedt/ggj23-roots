@@ -51,7 +51,7 @@ namespace _Game.Scripts
             }
             else
             {
-                animancer.Play(animIdle, 0.2f);
+                animancer.Play(plrAnimations.AnimIdle, 0.2f);
             }
 
             // Changes the height position of the player..
