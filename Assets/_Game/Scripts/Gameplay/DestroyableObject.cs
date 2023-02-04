@@ -1,6 +1,7 @@
 using Assets._Game.Scripts.Gameplay;
 using Assets._Game.Scripts.Gameplay.Missiles;
 using System.Collections;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -23,8 +24,6 @@ public class DestroyableObject : MonoBehaviour
         var missile = collision.gameObject.GetComponent<WeaponMissile>();
         if (missile != null)
         {
-            Debug.Log("Tree damaged: " + missile.damage + " / " + healthCurrent);
-
             Damage(missile.damage, collision.transform.position);
             missile.MissileHitObject();
         }
@@ -32,7 +31,12 @@ public class DestroyableObject : MonoBehaviour
 
     public void Damage(int damage, Vector3 impactPos)
     {
-        healthCurrent -= damage;
+        if (healthCurrent > 0)
+        {
+            healthCurrent -= damage;
+            Debug.Log("Tree damaged: " + damage + " / " + healthCurrent);
+        }
+
         if (healthCurrent <= 0)
         {
             Die(impactPos);

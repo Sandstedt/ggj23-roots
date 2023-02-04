@@ -423,27 +423,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 2343583248092339587, guid: 3f54cfd5c8681de45944c25c13b9432f,
-        type: 3}
-      propertyPath: ammoMax
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2343583248092339587, guid: 3f54cfd5c8681de45944c25c13b9432f,
-        type: 3}
-      propertyPath: throwForceUp
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2343583248092339587, guid: 3f54cfd5c8681de45944c25c13b9432f,
-        type: 3}
-      propertyPath: throwForceRight
-      value: -4000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2343583248092339587, guid: 3f54cfd5c8681de45944c25c13b9432f,
-        type: 3}
-      propertyPath: weaponThrowAway
-      value: 
-      objectReference: {fileID: 5577095468007373934, guid: 7c7f96ad3a852734f9364e7f1054c873,
-        type: 3}
     - target: {fileID: 2343583248092339598, guid: 3f54cfd5c8681de45944c25c13b9432f,
         type: 3}
       propertyPath: m_Name
