@@ -26,7 +26,6 @@ namespace Animancer.Examples.StateMachines
         [SerializeField] private EquipState _Equip;
         [SerializeField] private Weapon[] _Weapons;
         [SerializeField] private Camera playerCamera;
-        
 
         private StateMachine<CharacterState>.InputBuffer _InputBuffer;
 
@@ -36,14 +35,14 @@ namespace Animancer.Examples.StateMachines
         {
             _InputBuffer = new StateMachine<CharacterState>.InputBuffer(_Character.StateMachine);
         }
-        
+
 
         /************************************************************************************************************************/
 
         private void Update()
         {
             T5UpdateMovement();
-            // UpdateMovement();
+            UpdateMovement();
             UpdateEquip();
             UpdateAction();
 
@@ -51,7 +50,7 @@ namespace Animancer.Examples.StateMachines
         }
 
         /************************************************************************************************************************/
-        
+
         [SerializeField] private Vector3 movementDirection;
 
 
@@ -62,7 +61,7 @@ namespace Animancer.Examples.StateMachines
 
         private void T5UpdateMovement()
         {
-            
+
             var input = movementDirection;
             if (input != default)
             {

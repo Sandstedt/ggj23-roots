@@ -1,3 +1,4 @@
+using Assets._Game.Scripts.Gameplay.Missiles;
 using System.Collections;
 using UnityEngine;
 
@@ -12,22 +13,27 @@ public class DestroyableObject : MonoBehaviour
     private void Start()
     {
         healthCurrent = healthMax;
-
-        StartCoroutine(DieAfterTime());
     }
 
-    IEnumerator DieAfterTime()
+    void OnCollisionEnter(Collision collision)
     {
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(5);
+        var missile = collision.gameObject.GetComponent<WeaponMissile>();
+        if (missile != null)
+        {
+            Debug.Log("Tree damaged: " + missile.damage + " / " + healthCurrent);
 
-        Die();
+            Damage(missile.damage);
+            missile.MissileHitObject();
+        }
     }
 
     public void Damage(int damage)
     {
         healthCurrent -= damage;
-        Die();
+        if (healthCurrent <= 0)
+        {
+            Die();
+        }
     }
 
     private void Die()
