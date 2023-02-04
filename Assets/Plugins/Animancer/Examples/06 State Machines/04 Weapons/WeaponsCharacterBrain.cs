@@ -19,6 +19,8 @@ namespace Animancer.Examples.StateMachines
     {
         /************************************************************************************************************************/
 
+        [SerializeField] private bool keyboard;
+        
         [SerializeField] private Character _Character;
         [SerializeField] private CharacterState _Move;
         [SerializeField] private CharacterState _Attack;
@@ -42,8 +44,14 @@ namespace Animancer.Examples.StateMachines
 
         private void Update()
         {
-            T5UpdateMovement();
-            // UpdateMovement();
+            if (keyboard)
+            {
+                UpdateMovement();
+            }
+            else
+            {
+                T5UpdateMovement();
+            }
             UpdateEquip();
             UpdateAction();
 
@@ -57,12 +65,13 @@ namespace Animancer.Examples.StateMachines
 
         public void OnStickMoved(Vector2 direction)
         {
+            Debug.Log("OnStickMoved x: " + direction.x + " y: " + direction.y);
             movementDirection = direction;
         }
 
         private void T5UpdateMovement()
         {
-            
+               
             var input = movementDirection;
             if (input != default)
             {
@@ -131,7 +140,22 @@ namespace Animancer.Examples.StateMachines
         }
 
         /************************************************************************************************************************/
-
+        public void Weapon1()
+        {
+            Debug.Log("Weapon1");
+            _Equip.NextWeapon = _Weapons[1];
+            _InputBuffer.Buffer(_Equip, _InputTimeOut);
+            _InputBuffer.Buffer(_Attack, _InputTimeOut);
+        }
+        
+        public void Weapon2()
+        {
+            Debug.Log("Weapon2");
+            _Equip.NextWeapon = _Weapons[2];
+            _InputBuffer.Buffer(_Equip, _InputTimeOut);
+            _InputBuffer.Buffer(_Attack, _InputTimeOut);
+        }
+        
         private void UpdateEquip()
         {
             if (ExampleInput.RightMouseDown)

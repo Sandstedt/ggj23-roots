@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5515191284701369979}
   - component: {fileID: 5515191284701369978}
   - component: {fileID: 5515191284701369977}
+  - component: {fileID: 2176327639634799386}
   m_Layer: 0
   m_Name: CharacterFirstPlayer
   m_TagString: Untagged
@@ -35,6 +36,7 @@ Transform:
   - {fileID: 5515191284619133608}
   - {fileID: 5515191285965849606}
   - {fileID: 5515191285178991904}
+  - {fileID: 4906248191280953853}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -111,6 +113,20 @@ MonoBehaviour:
     _Clip: {fileID: 7400000, guid: c2ecee9424461bf4e864486b30ec0e9e, type: 2}
     _Speed: 1
     _NormalizedStartTime: NaN
+--- !u!114 &2176327639634799386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5515191284701369976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8234824881d2443a4bb4ed94d80d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnOnDeath: {fileID: 0}
+  healthMax: 50
 --- !u!1 &5515191285178991910
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +355,215 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Character: {fileID: 5515191284701369978}
+--- !u!1 &8395251531194856029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4906248191280953853}
+  - component: {fileID: 9155562194769561475}
+  m_Layer: 0
+  m_Name: Input
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4906248191280953853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395251531194856029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5515191284701369925}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9155562194769561475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395251531194856029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e5a22ab0024514995f57434a8c6ffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wandHand: 0
+  _onWandAvailable:
+    m_PersistentCalls:
+      m_Calls: []
+  _onWandUnavailable:
+    m_PersistentCalls:
+      m_Calls: []
+  _onAPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  _onAHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  _onALifted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBLifted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onXPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  _onXHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  _onXLifted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onYPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  _onYHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  _onYLifted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onOnePressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5515191285965849602}
+        m_TargetAssemblyTypeName: Animancer.Examples.StateMachines.WeaponsCharacterBrain,
+          Animancer.Examples
+        m_MethodName: Weapon1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onOneHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  _onOneLifted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTwoPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5515191285965849602}
+        m_TargetAssemblyTypeName: Animancer.Examples.StateMachines.WeaponsCharacterBrain,
+          Animancer.Examples
+        m_MethodName: Weapon2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onTwoHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTwoLifted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTiltFiveButtonPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTiltFiveButtonHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTiltFiveButtonLifted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTriggerDown:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTriggerPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTriggerReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStickMoved:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5515191285965849602}
+        m_TargetAssemblyTypeName: Animancer.Examples.StateMachines.WeaponsCharacterBrain,
+          Animancer.Examples
+        m_MethodName: OnStickMoved
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onStickPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStickHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStickReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStickStopMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStickStopUse:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStickDown:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStickUp:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStickRight:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStickLeft:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStickHeldDown:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStickHeldUp:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStickHeldRight:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStickHeldLeft:
+    m_PersistentCalls:
+      m_Calls: []
+  _stickMovementDeadzone: 0.666
+  _stickMovementHoldWait: 0.75
+  _stickMovementHoldDelay: 0.1
+  _triggerLimitPressed: 0.1
+  _triggerLimitReleased: 0.1
 --- !u!1001 &5515191284351920437
 PrefabInstance:
   m_ObjectHideFlags: 0
