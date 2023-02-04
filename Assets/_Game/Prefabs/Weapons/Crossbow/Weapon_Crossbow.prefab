@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88a9dc77c6ff454e8c25dbb291c6aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firingTime: 5
+  firingTime: 1.2
   firingForceRight: -8000
   firingForceUp: 2
   arrowToSpawn: {fileID: 5577095468007373934, guid: 0896f230f4c3b214087f8cbe51225f2b,
