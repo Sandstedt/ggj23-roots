@@ -15,6 +15,8 @@ namespace Assets._Game.Scripts.Gameplay
 
         [SerializeField] PlayerController plrController;
 
+        [SerializeField] Transform respawnPos;
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.R))
@@ -36,7 +38,7 @@ namespace Assets._Game.Scripts.Gameplay
         private void SpawnNewCharacter()
         {
             var plrModel = listPlayerModels[nrSpawned];
-            plrController.SetModel(plrModel);
+            plrController.RespawnPlayer(plrModel, respawnPos.position);
         }
     }
 }

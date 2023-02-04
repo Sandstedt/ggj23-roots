@@ -128,5 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f1c5240166e1f141bdf230b1a64ab11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nrSpawned: 0
   team: 0
-  listCharacters: []
+  listPlayerModels: []
+  plrController: {fileID: 0}
+  respawnPos: {fileID: 3076672058506942091}

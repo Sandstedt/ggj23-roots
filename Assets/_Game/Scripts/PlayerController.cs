@@ -89,7 +89,7 @@ namespace _Game.Scripts
             movementDirection = direction;
         }
 
-        public void SetModel(GameObject model)
+        public void RespawnPlayer(GameObject model, Vector3 respawnPos)
         {
             Debug.Log("setting model: " + model.name);
             var oldModel = currentPlayerModel;
@@ -103,6 +103,9 @@ namespace _Game.Scripts
 
             animancer.Animator = newModel.GetComponent<Animator>();
             plrAnimations = newModel.GetComponent<PlayerAnimations>();
+
+            transform.position = respawnPos;
+
             Destroy(oldModel);
         }
 
