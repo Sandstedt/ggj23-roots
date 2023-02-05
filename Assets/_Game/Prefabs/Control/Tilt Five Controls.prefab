@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: Player1SpawnPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321204107791701155}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 64.60001, y: 0, z: -4.4999924}
+  m_LocalPosition: {x: 57.6, y: 3.3, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4631,7 +4631,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5293241455662169495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -270, y: 47, z: -226}
+  m_LocalPosition: {x: -270, y: 0, z: -226}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4652,6 +4652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d62f23a6c432e478d165d7bdaab30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isKeyboard: 0
   playerCamera: {fileID: 7499751845620723297}
   player1spawnPosition: {fileID: 6577666682684078551}
   player2spawnPosition: {fileID: 2030018638058410679}
@@ -4667,7 +4668,7 @@ GameObject:
   m_Layer: 0
   m_Name: Player2SpawnPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4679,7 +4680,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7050718691497988785}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -59.9, y: 0, z: -4.5}
+  m_LocalPosition: {x: -50, y: 3.3, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4711,7 +4712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7499751843992992417}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -37.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4800,7 +4801,8 @@ MonoBehaviour:
       copyPlayerOneNearClipPlane: 1
       copyPlayerOneFarClipPlane: 1
       headPoseCamera: {fileID: 7499751845620723297}
-      objectTemplate: {fileID: 0}
+      objectTemplate: {fileID: 6685493551044359686, guid: 22185a764bd969848a2917493310ee89,
+        type: 3}
       cloneCameraTemplateChildren: 0
       cullingMask:
         serializedVersion: 2
@@ -4815,7 +4817,7 @@ MonoBehaviour:
       friendlyName: Tilt Five Glasses
     scaleSettings:
       contentScaleUnit: 4
-      contentScaleRatio: 0.5
+      contentScaleRatio: 0.3
       copyPlayerOneScaleRatio: 1
       copyPlayerOneScaleUnit: 1
     gameboardSettings:
@@ -4842,7 +4844,7 @@ MonoBehaviour:
       FailureMode: 0
       tiltFiveXR: 1
       copyPlayerOneCameraTemplate: 1
-      copyPlayerOneObjectTemplate: 1
+      copyPlayerOneObjectTemplate: 0
       copyCloneCameraTemplateChildren: 1
       copyPlayerOneCullingMask: 1
       copyPlayerOneFOVToggle: 1
@@ -4850,7 +4852,8 @@ MonoBehaviour:
       copyPlayerOneNearClipPlane: 1
       copyPlayerOneFarClipPlane: 1
       headPoseCamera: {fileID: 7499751845620723297}
-      objectTemplate: {fileID: 0}
+      objectTemplate: {fileID: 4379833507656831065, guid: 741c21d1fa3efec4a9a56cc68069f6d3,
+        type: 3}
       cloneCameraTemplateChildren: 0
       cullingMask:
         serializedVersion: 2
@@ -4900,7 +4903,8 @@ MonoBehaviour:
       copyPlayerOneNearClipPlane: 1
       copyPlayerOneFarClipPlane: 1
       headPoseCamera: {fileID: 7499751845620723297}
-      objectTemplate: {fileID: 0}
+      objectTemplate: {fileID: 6685493551044359686, guid: 22185a764bd969848a2917493310ee89,
+        type: 3}
       cloneCameraTemplateChildren: 0
       cullingMask:
         serializedVersion: 2
@@ -4950,7 +4954,8 @@ MonoBehaviour:
       copyPlayerOneNearClipPlane: 1
       copyPlayerOneFarClipPlane: 1
       headPoseCamera: {fileID: 7499751845620723297}
-      objectTemplate: {fileID: 0}
+      objectTemplate: {fileID: 6685493551044359686, guid: 22185a764bd969848a2917493310ee89,
+        type: 3}
       cloneCameraTemplateChildren: 0
       cullingMask:
         serializedVersion: 2
@@ -5009,8 +5014,8 @@ MonoBehaviour:
     level: 5
     TAG: TFI
   editorSettings:
-    selectedPlayer: 1
-    selectedPlayerSettingsPanel: 1
+    selectedPlayer: 2
+    selectedPlayerSettingsPanel: 0
 --- !u!1 &7499751845620723303
 GameObject:
   m_ObjectHideFlags: 0
