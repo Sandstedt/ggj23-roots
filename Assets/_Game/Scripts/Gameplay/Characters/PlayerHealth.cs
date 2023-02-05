@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] private CharacterTeam team;
+    
     [SerializeField] int healthCurrent, healthMax;
     [SerializeField] GameObject spawnOnDamage;
     [SerializeField] GameObject spawnOnDeath;
@@ -19,9 +21,18 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         healthCurrent = healthMax;
-        if (characterRespawner != null && playerHealthBarModel == null)
+        if (playerHealthBarModel == null)
         {
-            playerHealthBarModel = characterRespawner.GetComponentInChildren<PlayerHealthBarModel>();
+            if (team == CharacterTeam.team1)
+            {
+                playerHealthBarModel = StaticReferences.Instance.playerHealthBarModelTeam1;
+            }
+            else
+            {
+                playerHealthBarModel = StaticReferences.Instance.playerHealthBarModelTeam2;
+            }
+            playerHealthBarModel.team = team;
+            // playerHealthBarModel =  characterRespawner.GetComponentInChildren<PlayerHealthBarModel>();
         }
     }
 
@@ -75,6 +86,7 @@ public class PlayerHealth : MonoBehaviour
         if (spawnOnDeath != null)
         {
             Debug.Log("Player died: " + name);
+            playerHealthBarModel.Die();
             Instantiate(spawnOnDeath, impactPos, transform.rotation);
         }
 

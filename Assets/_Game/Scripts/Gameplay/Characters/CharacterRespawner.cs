@@ -81,7 +81,7 @@ namespace Assets._Game.Scripts.Gameplay
 
         IEnumerator DelayInstantiate()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.2f);
             InstantiatePlayer();
         }
     }

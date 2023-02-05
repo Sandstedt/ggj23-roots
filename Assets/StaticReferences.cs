@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using _Game.Scripts.Gameplay.Characters;
 using Assets._Game.Scripts.Gameplay.Characters;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,10 +20,14 @@ public class StaticReferences : MonoBehaviour
     [SerializeField] private PlayerGrip playerGripP1;
     [SerializeField] private PlayerGrip playerGripP2;
     public Dictionary<CharacterTeam, PlayerGrip> playerGrips = new();
+    public PlayerHealthBarModel playerHealthBarModelTeam1;
+    public PlayerHealthBarModel playerHealthBarModelTeam2;
+    public TextMeshPro winTxt;
     
 
     private void Awake()
     {
+        winTxt.gameObject.SetActive(false);
         playerSpawnPositions.Add(CharacterTeam.team1, player1spawnPosition);
         playerSpawnPositions.Add(CharacterTeam.team2, player2spawnPosition);
         playerGrips.Add(CharacterTeam.team1, playerGripP1);
@@ -46,5 +51,16 @@ public class StaticReferences : MonoBehaviour
     public void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void RestartSceneDelay()
+    {
+        StartCoroutine(DelayRestart());
+    }
+    
+    IEnumerator DelayRestart()
+    {
+        yield return new WaitForSeconds(2f);
+        RestartScene();
     }
 }
