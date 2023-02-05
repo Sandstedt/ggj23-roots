@@ -29,11 +29,12 @@ namespace _Game.Scripts.Gameplay.Characters
             if (_isClose)
             {
                 _transform.parent = this.transform;
-                _rigidbody.Sleep();
+                _rigidbody.isKinematic = true;
             }
             else
             {
                 _transform.parent = null;
+                _rigidbody.isKinematic = false;
                 _rigidbody.WakeUp();
             }
         }
@@ -43,6 +44,7 @@ namespace _Game.Scripts.Gameplay.Characters
             if (_rigidbody)
             {
                 _transform.parent = null;
+                _rigidbody.isKinematic = false;
                 _rigidbody.WakeUp();
             }
         }

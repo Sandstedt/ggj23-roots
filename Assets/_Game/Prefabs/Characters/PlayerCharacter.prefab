@@ -168,9 +168,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 9066917891857753198}
+        m_TargetAssemblyTypeName: _Game.Scripts.PlayerController, Assembly-CSharp
+        m_MethodName: Grip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onTriggerReleased:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9066917891857753198}
+        m_TargetAssemblyTypeName: _Game.Scripts.PlayerController, Assembly-CSharp
+        m_MethodName: GripRelease
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onStickMoved:
     m_PersistentCalls:
       m_Calls:
@@ -320,6 +344,7 @@ MonoBehaviour:
   animancer: {fileID: 6120749739880312865}
   playerCamera: {fileID: 0}
   currentPlayerModel: {fileID: 4736421414538297311}
+  playerGrip: {fileID: 0}
   plrAnimations: {fileID: 165803338036033924}
   playerHealth: {fileID: 7821141565297859108}
 --- !u!143 &9066917891857753197

@@ -1,4 +1,5 @@
 ﻿using System;
+using _Game.Scripts.Gameplay.Characters;
 using Animancer;
 using Assets._Game.Scripts.Gameplay.Characters;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace _Game.Scripts
         public Camera playerCamera;
         [SerializeField] private GameObject currentPlayerModel;
         private Vector3 movementDirection;
+        public PlayerGrip playerGrip;
+        
 
 
         // [SerializeField] private float movementSpeed;
@@ -31,6 +34,16 @@ namespace _Game.Scripts
         public void Jump()
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+        }
+
+        public void Grip()
+        {
+            playerGrip.OnGripping();
+        }
+
+        public void GripRelease()
+        {
+            playerGrip.OnGrippingRelease();
         }
 
         void Update()

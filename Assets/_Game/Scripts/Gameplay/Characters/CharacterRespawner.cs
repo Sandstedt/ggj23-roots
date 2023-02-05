@@ -29,6 +29,7 @@ namespace Assets._Game.Scripts.Gameplay
             plrController.transform.position = respawnPos.position;
             plrController.transform.rotation = respawnPos.rotation;
             plrController.playerHealth.characterRespawner = this;
+            plrController.playerGrip = StaticReferences.Instance.playerGrips[team];
             if (StaticReferences.Instance.isKeyboard)
             {
                 plrController.playerCamera = Camera.main;
