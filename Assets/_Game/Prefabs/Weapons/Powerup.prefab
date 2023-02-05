@@ -227,8 +227,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1f2be2afbdd8e46867589945d0eb7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponToPickup: {fileID: 0}
+  weaponType: 0
   randomSoundPlay: {fileID: 8584361794151539469}
+  respawnTime: 30
+  weaponModel: {fileID: 447246242325271870}
+  pickupCollider: {fileID: 447246241684815798}
 --- !u!1 &447246242325271870
 GameObject:
   m_ObjectHideFlags: 0
