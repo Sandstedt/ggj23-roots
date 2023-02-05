@@ -23,7 +23,7 @@ namespace _Game.Scripts
         [SerializeField] private GameObject currentPlayerModel;
         private Vector3 movementDirection;
         public PlayerGrip playerGrip;
-        
+
 
         [SerializeField] WeaponShoot weaponCrossBow, weaponCannonBow, weaponBomb;
 
@@ -167,7 +167,7 @@ namespace _Game.Scripts
             movementDirection = new Vector3(direction.x, 0, direction.y);
         }
 
-        public void RespawnPlayer(GameObject model, Vector3 respawnPos)
+        public void RespawnPlayerWithPlayerModel(GameObject model, Vector3 respawnPos)
         {
             var oldModel = currentPlayerModel;
             var newModel = Instantiate(model, currentPlayerModel.transform.position, currentPlayerModel.transform.rotation);
@@ -186,6 +186,12 @@ namespace _Game.Scripts
             playerHealth.PlayerRespawned();
 
             Destroy(oldModel);
+        }
+
+        public void RespawnPlayer(Vector3 respawnPos)
+        {
+            transform.position = respawnPos;
+            playerHealth.PlayerRespawned();
         }
 
         // public void Move()

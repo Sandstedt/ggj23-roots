@@ -46,7 +46,7 @@ namespace Assets._Game.Scripts.Gameplay
         private void Start()
         {
             respawnPos = StaticReferences.Instance.playerSpawnPositions[team];
-            
+
             if (team == CharacterTeam.team1)
             {
                 InstantiatePlayer();
@@ -76,10 +76,9 @@ namespace Assets._Game.Scripts.Gameplay
 
         private void SpawnNewCharacter()
         {
-            var plrModel = listPlayerModels[nrSpawned];
-            plrController.RespawnPlayer(plrModel, respawnPos.position);
+            plrController.RespawnPlayer(respawnPos.position);
         }
-        
+
         IEnumerator DelayInstantiate()
         {
             yield return new WaitForSeconds(2f);
