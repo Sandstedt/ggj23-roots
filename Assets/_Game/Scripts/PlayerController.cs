@@ -2,6 +2,7 @@
 using _Game.Scripts.Gameplay.Characters;
 using Animancer;
 using Assets._Game.Scripts.Gameplay.Characters;
+using Assets._Game.Scripts.Gameplay.Powerups;
 using UnityEngine;
 
 namespace _Game.Scripts
@@ -23,13 +24,43 @@ namespace _Game.Scripts
         public PlayerGrip playerGrip;
         
 
+        [SerializeField] WeaponShoot weaponCrossBow, weaponCannonBow, weaponBomb;
+
+        private WeaponShoot currentWeapon;
 
         // [SerializeField] private float movementSpeed;
 
         public PlayerAnimations plrAnimations;
-
         public PlayerHealth playerHealth;
 
+        private void Start()
+        {
+            Debug.Log("current weapon set!");
+            currentWeapon = weaponCrossBow;
+        }
+
+        public void WeaponPickup(WeaponType weaponType)
+        {
+            if (currentWeapon.ammoCurrent > 0)
+            {
+                currentWeapon.ShootThrowWeapon();
+            }
+
+            switch (weaponType)
+            {
+                case WeaponType.crossbow:
+                    currentWeapon = weaponCrossBow;
+                    break;
+                case WeaponType.cannonBow:
+                    currentWeapon = weaponCannonBow;
+                    break;
+                case WeaponType.bomb:
+                    currentWeapon = weaponBomb;
+                    break;
+            }
+            currentWeapon.gameObject.SetActive(true);
+            currentWeapon.WeaponEnable();
+        }
 
         public void Jump()
         {
@@ -82,11 +113,11 @@ namespace _Game.Scripts
                 gameObject.transform.forward = normalizedMove;
                 playerVelocity.x = normalizedMove.x * playerSpeed;
                 playerVelocity.z = normalizedMove.z * playerSpeed;
-                animancer.Play(groundedPlayer ?  plrAnimations.AnimWalk : plrAnimations.AnimJump, 0.2f);
+                animancer.Play(groundedPlayer ? plrAnimations.AnimWalk : plrAnimations.AnimJump, 0.2f);
             }
             else
             {
-                animancer.Play(groundedPlayer ? plrAnimations.AnimIdle :  plrAnimations.AnimJump, 0.2f);
+                animancer.Play(groundedPlayer ? plrAnimations.AnimIdle : plrAnimations.AnimJump, 0.2f);
             }
 
             // Changes the height position of the player..

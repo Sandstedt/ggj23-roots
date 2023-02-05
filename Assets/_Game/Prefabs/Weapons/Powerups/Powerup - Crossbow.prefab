@@ -67,6 +67,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 447246241684815797, guid: 7d6deaa66b94da04eb65c270974f3333,
+        type: 3}
+      propertyPath: respawnTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 447246241684815797, guid: 7d6deaa66b94da04eb65c270974f3333,
+        type: 3}
+      propertyPath: weaponModel
+      value: 
+      objectReference: {fileID: 336323648101012288}
+    - target: {fileID: 447246241684815797, guid: 7d6deaa66b94da04eb65c270974f3333,
+        type: 3}
+      propertyPath: pickupCollider
+      value: 
+      objectReference: {fileID: 336323647666043336}
+    - target: {fileID: 447246241684815798, guid: 7d6deaa66b94da04eb65c270974f3333,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 447246242325271864, guid: 7d6deaa66b94da04eb65c270974f3333,
         type: 3}
       propertyPath: rotationSpeed
@@ -74,3 +94,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d6deaa66b94da04eb65c270974f3333, type: 3}
+--- !u!135 &336323647666043336 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 447246241684815798, guid: 7d6deaa66b94da04eb65c270974f3333,
+    type: 3}
+  m_PrefabInstance: {fileID: 188637184380814974}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &336323648101012288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 447246242325271870, guid: 7d6deaa66b94da04eb65c270974f3333,
+    type: 3}
+  m_PrefabInstance: {fileID: 188637184380814974}
+  m_PrefabAsset: {fileID: 0}

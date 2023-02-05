@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1c8657c6b5cdc4eb5bcac1968488b356, type: 2}
+  - {fileID: 2100000, guid: ddf4daa350ecebb4ba5658fd60da9535, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -147,7 +147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+  timedLife: 10
   collisionCollider: {fileID: 5019721115564801476}
+  SpawnOnDeath: {fileID: 0}
 --- !u!136 &5019721115564801476
 CapsuleCollider:
   m_ObjectHideFlags: 0
