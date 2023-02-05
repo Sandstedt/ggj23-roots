@@ -14,6 +14,8 @@ namespace Assets._Game.Scripts.Gameplay.Powerups
         [SerializeField] GameObject weaponModel;
         [SerializeField] Collider pickupCollider;
 
+        [SerializeField] ParticleSystem particlePickup;
+
         private void OnTriggerEnter(Collider other)
         {
             Debug.Log("Something entered a powerup: " + other.name);
@@ -26,6 +28,7 @@ namespace Assets._Game.Scripts.Gameplay.Powerups
                 plr.WeaponPickup(weaponType);
                 weaponModel.SetActive(false);
                 pickupCollider.enabled = false;
+                particlePickup.Play();
                 StartCoroutine(RestoreWeaponPickup());
             }
         }
@@ -34,6 +37,7 @@ namespace Assets._Game.Scripts.Gameplay.Powerups
         {
             yield return new WaitForSeconds(respawnTime);
             weaponModel.SetActive(true);
+            particlePickup.Play();
             pickupCollider.enabled = true;
         }
     }

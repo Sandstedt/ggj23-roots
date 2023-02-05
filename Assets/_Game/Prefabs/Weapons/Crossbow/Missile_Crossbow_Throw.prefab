@@ -147,7 +147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  timedLife: 10
   collisionCollider: {fileID: 1232686513566976288}
+  SpawnOnDeath: {fileID: 0}
 --- !u!136 &1232686513566976288
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -159,6 +161,6 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.31708384
-  m_Height: 1.5
+  m_Height: 1.039325
   m_Direction: 0
-  m_Center: {x: 0, y: 0.02132225, z: 0}
+  m_Center: {x: -0.23033753, y: 0.02132225, z: 0}
