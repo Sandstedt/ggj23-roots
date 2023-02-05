@@ -54,6 +54,18 @@ public class PlayerHealth : MonoBehaviour
             Damage(missile.damage, collision.transform.position);
             missile.MissileHitObject();
         }
+        else
+        {
+            //Debug.Log( "playerpos: " + transform.position );
+            //Debug.Log( "collision.transform.position: " + collision.transform.position );
+
+            Vector3 v = collision.transform.position - transform.position;
+
+            if(Vector3.Dot( v.normalized, Vector3.up ) > 0.7)
+                Damage( 5, collision.transform.position );
+
+            //Debug.Log( "fromabove: " +  ); 
+        }
     }
 
     public void Damage(int damage, Vector3 impactPos)
