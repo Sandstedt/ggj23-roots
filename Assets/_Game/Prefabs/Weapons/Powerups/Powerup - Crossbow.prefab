@@ -69,6 +69,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447246241684815797, guid: 7d6deaa66b94da04eb65c270974f3333,
         type: 3}
+      propertyPath: respawnTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 447246241684815797, guid: 7d6deaa66b94da04eb65c270974f3333,
+        type: 3}
       propertyPath: weaponModel
       value: 
       objectReference: {fileID: 336323648101012288}
