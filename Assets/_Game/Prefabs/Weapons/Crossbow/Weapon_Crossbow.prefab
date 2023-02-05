@@ -50,10 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firingTime: 1.2
-  firingForceRight: -8000
-  firingForceUp: 2
+  firingForceRight: -12000
+  firingForceUp: 20
   throwForceRight: -6000
-  throwForceUp: 15
+  throwForceUp: 150
   arrowToSpawn: {fileID: 5577095468007373934, guid: 0896f230f4c3b214087f8cbe51225f2b,
     type: 3}
   weaponThrowAway: {fileID: 5577095468007373934, guid: 8ee01571006d1ce45891b35c920c97cd,
