@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets._Game.Scripts.Gameplay;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,10 +8,15 @@ namespace Assets._Game.Scripts.Effects
     public class TimedLifeParticle : MonoBehaviour
     {
         [SerializeField] float timedLife;
+        [SerializeField] RandomSoundPlay randomSoundPlay;
 
         void Awake()
         {
             //Start the coroutine we define below named ExampleCoroutine.
+            if (randomSoundPlay != null)
+            {
+                randomSoundPlay.PlayRandomSound();
+            }
             StartCoroutine(DieAfterTime());
         }
 
