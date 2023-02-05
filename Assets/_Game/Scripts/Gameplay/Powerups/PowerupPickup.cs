@@ -18,7 +18,6 @@ namespace Assets._Game.Scripts.Gameplay.Powerups
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Something entered a powerup: " + other.name);
             randomSoundPlay.PlayRandomSound();
 
             var plr = other.GetComponent<PlayerController>();

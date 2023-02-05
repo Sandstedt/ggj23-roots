@@ -13,13 +13,16 @@ public class PlayerHealth : MonoBehaviour
 
     public CharacterRespawner characterRespawner;
 
-    private PlayerHealthBarModel playerHealthBarModel;
+    [SerializeField] private PlayerHealthBarModel playerHealthBarModel;
 
 
     private void Start()
     {
         healthCurrent = healthMax;
-        playerHealthBarModel = characterRespawner.GetComponentInChildren<PlayerHealthBarModel>();
+        if (characterRespawner != null && playerHealthBarModel == null)
+        {
+            playerHealthBarModel = characterRespawner.GetComponentInChildren<PlayerHealthBarModel>();
+        }
     }
 
     private void Update()
@@ -51,7 +54,10 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            playerHealthBarModel.PlayerDamaged(healthCurrent);
+            if (playerHealthBarModel != null)
+            {
+                playerHealthBarModel.PlayerDamaged(healthCurrent);
+            }
             if (spawnOnDamage != null)
             {
                 Instantiate(spawnOnDamage, impactPos, transform.rotation);
@@ -61,8 +67,14 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die(Vector3 impactPos)
     {
+        if (playerHealthBarModel != null)
+        {
+            playerHealthBarModel.PlayerDamaged(healthCurrent);
+        }
+
         if (spawnOnDeath != null)
         {
+            Debug.Log("Player died: " + name);
             Instantiate(spawnOnDeath, impactPos, transform.rotation);
         }
 

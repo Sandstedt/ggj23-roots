@@ -147,9 +147,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  timedLife: 10
+  timedLife: 3
   collisionCollider: {fileID: 7809522893341746275}
-  SpawnOnDeath: {fileID: 0}
+  SpawnOnDeath: {fileID: 1391589557849848, guid: a12791d0a94e4c140ac99bd147d6518e,
+    type: 3}
 --- !u!135 &7809522893341746275
 SphereCollider:
   m_ObjectHideFlags: 0

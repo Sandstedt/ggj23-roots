@@ -413,6 +413,7 @@ MonoBehaviour:
   spawnOnDeath: {fileID: 5825486382688757681, guid: 915ac0bf97f02a24a944693917679074,
     type: 3}
   characterRespawner: {fileID: 0}
+  playerHealthBarModel: {fileID: 0}
 --- !u!1001 &1762603173497877185
 PrefabInstance:
   m_ObjectHideFlags: 0
