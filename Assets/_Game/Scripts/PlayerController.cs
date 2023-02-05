@@ -164,13 +164,11 @@ namespace _Game.Scripts
 
         public void OnMove(Vector2 direction)
         {
-            Debug.Log("moving " + direction.x + " " + direction.y);
             movementDirection = new Vector3(direction.x, 0, direction.y);
         }
 
         public void RespawnPlayerWithPlayerModel(GameObject model, Vector3 respawnPos)
         {
-            Debug.Log("setting model: " + model.name);
             var oldModel = currentPlayerModel;
             var newModel = Instantiate(model, currentPlayerModel.transform.position, currentPlayerModel.transform.rotation);
             currentPlayerModel.gameObject.SetActive(false);
