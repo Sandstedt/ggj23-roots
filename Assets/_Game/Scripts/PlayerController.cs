@@ -1,4 +1,5 @@
 ﻿using System;
+using _Game.Scripts.Gameplay.Characters;
 using Animancer;
 using Assets._Game.Scripts.Gameplay.Characters;
 using Assets._Game.Scripts.Gameplay.Powerups;
@@ -21,6 +22,8 @@ namespace _Game.Scripts
         public Camera playerCamera;
         [SerializeField] private GameObject currentPlayerModel;
         private Vector3 movementDirection;
+        public PlayerGrip playerGrip;
+        
 
         [SerializeField] WeaponShoot weaponCrossBow, weaponCannonBow, weaponBomb;
 
@@ -66,6 +69,16 @@ namespace _Game.Scripts
             {
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
             }
+        }
+
+        public void Grip()
+        {
+            playerGrip.OnGripping();
+        }
+
+        public void GripRelease()
+        {
+            playerGrip.OnGrippingRelease();
         }
 
         void Update()
