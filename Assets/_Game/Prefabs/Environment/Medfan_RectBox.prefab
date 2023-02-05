@@ -12,14 +12,14 @@ GameObject:
   - component: {fileID: 5142084200774965823}
   - component: {fileID: 1673095658231707599}
   - component: {fileID: 4060531000104592132}
-  - component: {fileID: 8543511977775998359}
-  - component: {fileID: -2887286731503378159}
+  - component: {fileID: -7459433593817747545}
+  - component: {fileID: -1713918110771893662}
   m_Layer: 0
   m_Name: Medfan_RectBox
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1483509216304217008
 Transform:
@@ -99,7 +99,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.97835165, y: 0.5524674, z: 0.55246747}
   m_Center: {x: -0.000000029802322, y: 0, z: 0.25000006}
---- !u!54 &8543511977775998359
+--- !u!54 &-7459433593817747545
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-2887286731503378159
+--- !u!114 &-1713918110771893662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,4 +131,4 @@ MonoBehaviour:
     type: 3}
   spawnOnDeath: {fileID: 5825486382688757681, guid: 7ecb38e3bf0c8bc40bf5c3040309ccc9,
     type: 3}
-  healthMax: 1
+  healthMax: 3

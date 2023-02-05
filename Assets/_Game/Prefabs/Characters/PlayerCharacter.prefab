@@ -168,6 +168,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8180236754766124997}
+        m_TargetAssemblyTypeName: WeaponShoot, Assembly-CSharp
+        m_MethodName: FireWeapon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9066917891857753198}
         m_TargetAssemblyTypeName: _Game.Scripts.PlayerController, Assembly-CSharp
         m_MethodName: Grip
@@ -345,6 +357,9 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   currentPlayerModel: {fileID: 4736421414538297311}
   playerGrip: {fileID: 0}
+  weaponCrossBow: {fileID: 8454382400320504853}
+  weaponCannonBow: {fileID: 8180236754766124997}
+  weaponBomb: {fileID: 4102799822560997186}
   plrAnimations: {fileID: 165803338036033924}
   playerHealth: {fileID: 7821141565297859108}
 --- !u!143 &9066917891857753197
@@ -465,6 +480,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon_Bomb
       objectReference: {fileID: 0}
+    - target: {fileID: 2343583248092339598, guid: 3f54cfd5c8681de45944c25c13b9432f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f54cfd5c8681de45944c25c13b9432f, type: 3}
 --- !u!114 &4102799822560997186 stripped
@@ -486,10 +506,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9066917891857753201}
     m_Modifications:
-    - target: {fileID: 2134797284909463727, guid: 28eb0349ad9aee744a560bcce39fe171,
+    - target: {fileID: 1834553648403311475, guid: 28eb0349ad9aee744a560bcce39fe171,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834553648403311487, guid: 28eb0349ad9aee744a560bcce39fe171,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134797284909463727, guid: 28eb0349ad9aee744a560bcce39fe171,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2974780388344300392, guid: 28eb0349ad9aee744a560bcce39fe171,
         type: 3}
@@ -589,6 +619,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7562578612836383927}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8180236754766124997 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1834553648403311474, guid: 28eb0349ad9aee744a560bcce39fe171,
+    type: 3}
+  m_PrefabInstance: {fileID: 7562578612836383927}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88a9dc77c6ff454e8c25dbb291c6aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8454382400320504853 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2134797284909463714, guid: 28eb0349ad9aee744a560bcce39fe171,
