@@ -1351,6 +1351,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tilt Five Controls
       objectReference: {fileID: 0}
+    - target: {fileID: 7499751844091407928, guid: 90ad46fac534d764e953c81bb67083cc,
+        type: 3}
+      propertyPath: editorSettings.selectedPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8914313785127323659, guid: 90ad46fac534d764e953c81bb67083cc,
         type: 3}
       propertyPath: m_RootOrder

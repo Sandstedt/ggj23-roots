@@ -81,6 +81,11 @@ namespace _Game.Scripts
             playerGrip.OnGrippingRelease();
         }
 
+        public void MenuButton()
+        {
+            StaticReferences.Instance.RestartScene();
+        }
+
         void Update()
         {
             groundedPlayer = controller.isGrounded;

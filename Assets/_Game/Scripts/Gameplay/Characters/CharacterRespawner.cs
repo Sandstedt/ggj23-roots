@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using _Game.Scripts;
 using Assets._Game.Scripts.Gameplay.Characters;
 using System.Collections.Generic;
@@ -21,9 +22,8 @@ namespace Assets._Game.Scripts.Gameplay
         [SerializeField] Transform respawnPos;
 
 
-        private void Start()
+        private void InstantiatePlayer()
         {
-            respawnPos = StaticReferences.Instance.playerSpawnPositions[team];
             var p = Instantiate(playerPrefab, respawnPos.position, respawnPos.rotation);
             plrController = p.GetComponent<PlayerController>();
             plrController.transform.position = respawnPos.position;
@@ -37,10 +37,25 @@ namespace Assets._Game.Scripts.Gameplay
             else
             {
                 plrController.playerCamera = this.gameObject.transform.parent.transform.Find("Left Eye Camera")
-                .GetComponent<Camera>();
+                    .GetComponent<Camera>();
             }
 
             Debug.Log("Instatiate " + p.name);
+        }
+
+        private void Start()
+        {
+            respawnPos = StaticReferences.Instance.playerSpawnPositions[team];
+            
+            if (team == CharacterTeam.team1)
+            {
+                InstantiatePlayer();
+            }
+            else
+            {
+                StartCoroutine(DelayInstantiate());
+            }
+
         }
 
         public void RespawnCharacter()
@@ -63,6 +78,12 @@ namespace Assets._Game.Scripts.Gameplay
         {
             var plrModel = listPlayerModels[nrSpawned];
             plrController.RespawnPlayer(plrModel, respawnPos.position);
+        }
+        
+        IEnumerator DelayInstantiate()
+        {
+            yield return new WaitForSeconds(2f);
+            InstantiatePlayer();
         }
     }
 }

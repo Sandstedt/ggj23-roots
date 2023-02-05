@@ -406,7 +406,6 @@ namespace TiltFiveDemos
 
         private TiltFive.ControllerIndex ControllerIndex()
         {
-            // Debug.Log(TiltFive.ControllerIndex);
             switch (_wandHand)
             {
                 case WandHand.Right:

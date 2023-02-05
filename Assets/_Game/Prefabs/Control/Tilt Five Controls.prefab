@@ -4885,14 +4885,14 @@ MonoBehaviour:
       controllerIndex: 1
       GripPoint: {fileID: 0}
       FingertipPoint: {fileID: 0}
-      AimPoint: {fileID: 0}
+      AimPoint: {fileID: 6716416927314641486}
     rightWandSettings:
       RejectUntrackedPositionData: 1
       FailureMode: 0
       controllerIndex: 0
       GripPoint: {fileID: 0}
       FingertipPoint: {fileID: 0}
-      AimPoint: {fileID: 0}
+      AimPoint: {fileID: 1287338996205320253}
     PlayerIndex: 2
   - glassesSettings:
       RejectUntrackedPositionData: 1
@@ -5018,8 +5018,8 @@ MonoBehaviour:
     level: 5
     TAG: TFI
   editorSettings:
-    selectedPlayer: 1
-    selectedPlayerSettingsPanel: 2
+    selectedPlayer: 2
+    selectedPlayerSettingsPanel: 0
 --- !u!1 &7499751845620723303
 GameObject:
   m_ObjectHideFlags: 0
