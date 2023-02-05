@@ -406,7 +406,6 @@ namespace TiltFiveDemos
 
         private TiltFive.ControllerIndex ControllerIndex()
         {
-            // Debug.Log(TiltFive.ControllerIndex);
             switch (_wandHand)
             {
                 case WandHand.Right:
@@ -434,6 +433,11 @@ namespace TiltFiveDemos
 
         private void Update()
         {
+            if (Input.TryGetButtonUp(Input.WandButton.One, out bool xButtonUp2))
+            {
+                Debug.Log("111111111111111");
+            }
+            
             // Prevent checking if this receiver is not active.
             if (!_active) return;
 

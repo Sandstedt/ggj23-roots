@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using _Game.Scripts.Gameplay.Characters;
 using Assets._Game.Scripts.Gameplay.Characters;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-100)]
 public class StaticReferences : MonoBehaviour
@@ -40,5 +41,10 @@ public class StaticReferences : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
