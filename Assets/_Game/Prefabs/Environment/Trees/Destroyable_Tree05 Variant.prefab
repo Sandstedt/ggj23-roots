@@ -60,7 +60,13 @@ PrefabInstance:
       propertyPath: healthMax
       value: 30
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3539419117845684470, guid: 9469bb1d3aa88ca40aa4079e96a27f8e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3539419117845684470, guid: 9469bb1d3aa88ca40aa4079e96a27f8e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9469bb1d3aa88ca40aa4079e96a27f8e, type: 3}
 --- !u!4 &1577566309402276555 stripped
 Transform:

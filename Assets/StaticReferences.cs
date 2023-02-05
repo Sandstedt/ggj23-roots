@@ -48,9 +48,14 @@ public class StaticReferences : MonoBehaviour
         }
     }
 
+    private int restartIn = 0;
     public void RestartScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        restartIn++;
+        if (restartIn > 2)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     public void RestartSceneDelay()
@@ -61,6 +66,6 @@ public class StaticReferences : MonoBehaviour
     IEnumerator DelayRestart()
     {
         yield return new WaitForSeconds(2f);
-        RestartScene();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
