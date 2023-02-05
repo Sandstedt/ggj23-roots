@@ -489,17 +489,17 @@ PrefabInstance:
         type: 3}
       propertyPath: listSounds.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: a9a910e5cff571b4891ed754fadf14b2, type: 3}
+      objectReference: {fileID: 8300000, guid: 0036d884c805e60478a57dac295bbbea, type: 3}
     - target: {fileID: 8148480157330940301, guid: f5cc8d00482de744cabb5b72a146121a,
         type: 3}
       propertyPath: listSounds.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: 806bd3c6705c1c8478f7a153abef6c61, type: 3}
+      objectReference: {fileID: 8300000, guid: a702840d86fbd2946b2fdd567d2561cd, type: 3}
     - target: {fileID: 8148480157330940301, guid: f5cc8d00482de744cabb5b72a146121a,
         type: 3}
       propertyPath: listSounds.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: a19a03169258a6e43907fcc410f7f8ca, type: 3}
+      objectReference: {fileID: 8300000, guid: 2bf7021c0d88f12408ef1ab14886f755, type: 3}
     - target: {fileID: 8148480157330940301, guid: f5cc8d00482de744cabb5b72a146121a,
         type: 3}
       propertyPath: listSounds.Array.data[3]
