@@ -38,7 +38,11 @@ namespace _Game.Scripts
 
         public void WeaponPickup(WeaponType weaponType)
         {
-            currentWeapon.ShootThrowWeapon();
+            if (currentWeapon.ammoCurrent > 0)
+            {
+                currentWeapon.ShootThrowWeapon();
+            }
+
             switch (weaponType)
             {
                 case WeaponType.crossbow:

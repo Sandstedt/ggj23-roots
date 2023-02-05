@@ -32,7 +32,7 @@ public class WeaponShoot : MonoBehaviour
 
     [SerializeField] int ammoMax;
 
-    private int ammoCurrent;
+    public int ammoCurrent { get; private set; }
 
     private bool canFire = false;
 
@@ -92,6 +92,7 @@ public class WeaponShoot : MonoBehaviour
         weaponThowBody.AddForce(weaponThowBody.transform.up * throwForceUp);
 
         canFire = false;
+        ammoCurrent = 0;
 
         weaponModel.SetActive(false);
         modelShowWhenReady.SetActive(false);
