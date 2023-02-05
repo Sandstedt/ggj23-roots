@@ -2,6 +2,7 @@
 using Animancer;
 using Assets._Game.Scripts.Gameplay.Characters;
 using Assets._Game.Scripts.Gameplay.Powerups;
+using TiltFive;
 using UnityEngine;
 
 namespace _Game.Scripts
@@ -61,7 +62,10 @@ namespace _Game.Scripts
 
         public void Jump()
         {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            if (groundedPlayer)
+            {
+                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            }
         }
 
         void Update()
@@ -71,8 +75,10 @@ namespace _Game.Scripts
             {
                 playerVelocity.y = 0f;
             }
-
             var _camera = playerCamera.transform;
+
+            //When placing a player directly for debugging this prevents null ref
+            if (_camera == null) return;
 
             var forward = _camera.forward;
             forward.y = 0;
@@ -85,7 +91,7 @@ namespace _Game.Scripts
             Vector3 move = Vector3.zero;
             if (StaticReferences.Instance.isKeyboard)
             {
-                move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                move = new Vector3(UnityEngine.Input.GetAxis("Horizontal"), 0, UnityEngine.Input.GetAxis("Vertical"));
             }
             else
             {
@@ -108,7 +114,7 @@ namespace _Game.Scripts
             }
 
             // Changes the height position of the player..
-            if (Input.GetButtonDown("Jump") && groundedPlayer)
+            if (groundedPlayer && UnityEngine.Input.GetButtonDown("Jump"))
             {
                 Jump();
             }
