@@ -428,6 +428,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon_Bomb
       objectReference: {fileID: 0}
+    - target: {fileID: 2343583248092339598, guid: 3f54cfd5c8681de45944c25c13b9432f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f54cfd5c8681de45944c25c13b9432f, type: 3}
 --- !u!1001 &7562578612836383927
@@ -437,6 +442,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9066917891857753201}
     m_Modifications:
+    - target: {fileID: 1834553648403311475, guid: 28eb0349ad9aee744a560bcce39fe171,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2134797284909463727, guid: 28eb0349ad9aee744a560bcce39fe171,
         type: 3}
       propertyPath: m_IsActive
