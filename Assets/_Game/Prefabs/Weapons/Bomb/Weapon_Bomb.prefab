@@ -54,6 +54,8 @@ MonoBehaviour:
   firingForceUp: 3000
   throwForceRight: -5000
   throwForceUp: 3000
+  rotationForce: 2000
+  rotationForceThrow: 2000
   arrowToSpawn: {fileID: 5577095468007373934, guid: 7c7f96ad3a852734f9364e7f1054c873,
     type: 3}
   weaponThrowAway: {fileID: 5577095468007373934, guid: 7c7f96ad3a852734f9364e7f1054c873,
@@ -93,7 +95,7 @@ Transform:
   m_GameObject: {fileID: 2343583248713191972}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1239096390116174324}
@@ -129,7 +131,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6b051bc964265438b9edf8fb79c57ccb, type: 2}
+  - {fileID: 2100000, guid: 6cf636bfbbf28f18686f9269fe9e5a28, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

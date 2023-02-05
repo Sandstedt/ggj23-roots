@@ -54,6 +54,8 @@ MonoBehaviour:
   firingForceUp: 1000
   throwForceRight: -8000
   throwForceUp: 2000
+  rotationForce: 20
+  rotationForceThrow: -5000
   arrowToSpawn: {fileID: 5577095468007373934, guid: 143485a3ebfca054ba5efb2690721d4c,
     type: 3}
   weaponThrowAway: {fileID: 5577095468007373934, guid: 993601bd7f1c1a74d8d08657dcf31c82,
@@ -708,7 +710,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7ea77b3e49c1d61409582be7e98d0d61, type: 2}
+  - {fileID: 2100000, guid: 6811550c8f875da47879b46fc57f9d14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

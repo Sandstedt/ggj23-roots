@@ -13,6 +13,9 @@ public class WeaponShoot : MonoBehaviour
     [SerializeField] float throwForceRight = -300f;
     [SerializeField] float throwForceUp = 20;
 
+    [SerializeField] float rotationForce = 20f;
+    [SerializeField] float rotationForceThrow = 20f;
+
     [SerializeField] WeaponMissile arrowToSpawn;
 
     [SerializeField] WeaponMissile weaponThrowAway;
@@ -78,6 +81,11 @@ public class WeaponShoot : MonoBehaviour
         arrow.SetIgnoreObject(plrCollider);
         arrowBody.AddForce(arrowBody.transform.right * firingForceRight);
         arrowBody.AddForce(arrowBody.transform.up * firingForceUp);
+
+        if (rotationForce > 0)
+        {
+            arrowBody.AddTorque(arrowBody.transform.right * rotationForce * 1);
+        }
     }
 
     public void ShootThrowWeapon()
@@ -90,6 +98,11 @@ public class WeaponShoot : MonoBehaviour
         weaponThrow.SetIgnoreObject(plrCollider);
         weaponThowBody.AddForce(weaponThowBody.transform.right * throwForceRight);
         weaponThowBody.AddForce(weaponThowBody.transform.up * throwForceUp);
+
+        if (rotationForceThrow > 0)
+        {
+            weaponThowBody.AddTorque(weaponThowBody.transform.right * rotationForceThrow * 1);
+        }
 
         canFire = false;
         ammoCurrent = 0;
