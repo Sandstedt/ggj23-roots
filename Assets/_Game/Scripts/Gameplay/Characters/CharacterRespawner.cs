@@ -45,11 +45,17 @@ namespace Assets._Game.Scripts.Gameplay
 
         public void RespawnCharacter()
         {
-            Debug.Log(" listPlayerModels.Count: " + listPlayerModels.Count);
+            Debug.Log("Player is respawning");
             if (listPlayerModels != null && nrSpawned < listPlayerModels.Count)
             {
                 SpawnNewCharacter();
                 nrSpawned++;
+            }
+            else
+            {
+                nrSpawned = 0;
+                SpawnNewCharacter();
+
             }
         }
 

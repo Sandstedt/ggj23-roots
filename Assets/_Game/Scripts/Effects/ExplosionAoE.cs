@@ -5,33 +5,32 @@ namespace Assets._Game.Scripts.Effects
 {
     public class ExplosionAoE : MonoBehaviour
     {
-        [SerializeField] float radius;
-
         [SerializeField] int damage;
+        [SerializeField] float radius;
 
         private void Start()
         {
-            RaycastHit hit;
-
-            // Cast a sphere wrapping character controller 10 meters forward
-            // to see if it is about to hit anything.
-            if (Physics.SphereCast(transform.position, radius, transform.forward, out hit, radius))
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
+            foreach (Collider hit in hitColliders)
             {
-                Debug.Log("HIT TARGET: " + hit.collider.transform.name);
-
-                DestroyableObject hitTarget = hit.collider.transform.GetComponent<DestroyableObject>();
-                if (hitTarget != null)
+                if (hit.transform.TryGetComponent<DestroyableObject>(out var hitTarget))
                 {
-                    hitTarget.Damage(damage, transform.position);
-
+                    Debug.Log("Explosion AOE damage target: " + damage);
+                    hitTarget.Damage(damage, hit.transform.position);
                 }
 
-                PlayerHealth hitPlayer = hit.transform.GetComponent<PlayerHealth>();
-                if (hitPlayer != null)
+                if (hit.transform.TryGetComponent<PlayerHealth>(out var hitPlayer))
                 {
-                    hitPlayer.Damage(damage, transform.position);
+                    hitPlayer.Damage(damage, hit.transform.position);
                 }
             }
+        }
+
+        void OnDrawGizmosSelected()
+        {
+            // Draw a yellow sphere at the transform's position
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(transform.position, radius);
         }
     }
 }

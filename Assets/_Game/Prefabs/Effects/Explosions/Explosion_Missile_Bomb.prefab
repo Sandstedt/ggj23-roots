@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5fcdb2f28acee4409bde73a2313f8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 30
-  damage: 40
+  damage: 15
+  radius: 10
 --- !u!1001 &1325969480857144805
 PrefabInstance:
   m_ObjectHideFlags: 0

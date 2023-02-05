@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06126aff7efda4b44bd81b374b991854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 20
   timedLife: 1
   collisionCollider: {fileID: 1232686513566976288}
   SpawnOnDeath: {fileID: 5825486382688757681, guid: 3a1d7b988631037458b30bf4d22225bc,

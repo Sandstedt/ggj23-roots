@@ -54,7 +54,7 @@ public class DestroyableObject : MonoBehaviour
     {
         if (spawnOnDeath != null)
         {
-            Instantiate(spawnOnDeath, impactPos, transform.rotation);
+            Instantiate(spawnOnDeath, transform.position, transform.rotation);
         }
 
         Destroy(gameObject);

@@ -65,7 +65,7 @@ MonoBehaviour:
   modelLaserShowWhenReady: {fileID: 5547308671607528165}
   soundShoot: {fileID: 3693492328409513559}
   soundThrow: {fileID: 4199895986268416029}
-  ammoMax: 2
+  ammoMax: 6
 --- !u!1 &2343583248713191972
 GameObject:
   m_ObjectHideFlags: 0
