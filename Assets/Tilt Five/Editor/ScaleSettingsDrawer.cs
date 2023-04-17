@@ -36,6 +36,7 @@ namespace TiltFive
         {
             var scaleRatioProperty = scaleSettingsProperty.FindPropertyRelative("contentScaleRatio");
             var physicalUnitsProperty = scaleSettingsProperty.FindPropertyRelative("contentScaleUnit");
+            var legacyInvertGameboardScaleProperty = scaleSettingsProperty.FindPropertyRelative("legacyInvertGameboardScale");
 
             using (new EditorGUILayout.VerticalScope())
             {
@@ -57,6 +58,20 @@ namespace TiltFive
                         physicalUnitsProperty.enumDisplayNames);
                     EditorGUIUtility.labelWidth = 0;
                 }
+
+                EditorGUILayout.LabelField(new GUIContent("Legacy Gameboard Scale Inversion",
+                "Prior versions of the Tilt Five Unity SDK incorrectly inverted the scale of the " +
+                "Gameboard object, causing the virtual gameboard to get smaller, and virtual " +
+                "geometry viewed through the glasses to get larger, when the scale transform " +
+                "value was increased. Enabling this checkbox will cause the old behavior to be " +
+                "used. This is NOT recommended except when attempting to make content developed " +
+                "with an older SDK function."));
+
+                using (new EditorGUI.IndentLevelScope())
+                {
+                    legacyInvertGameboardScaleProperty.boolValue = EditorGUILayout.Toggle(new GUIContent(
+                                "Invert Gameboard Scale"), legacyInvertGameboardScaleProperty.boolValue);
+                }
             }
         }
 
@@ -73,6 +88,7 @@ namespace TiltFive
         {
             var scaleRatioProperty = playerOneScaleSettingsProperty.FindPropertyRelative("contentScaleRatio");
             var physicalUnitsProperty = playerOneScaleSettingsProperty.FindPropertyRelative("contentScaleUnit");
+            var legacyInvertGameboardScaleProperty = playerOneScaleSettingsProperty.FindPropertyRelative("legacyInvertGameboardScale");
 
             // Determine which players need to have changes propagated to them
             var copyScaleRatioToPlayerTwo = playerTwoScaleSettingsProperty.FindPropertyRelative("copyPlayerOneScaleRatio").boolValue;
@@ -123,6 +139,20 @@ namespace TiltFive
                     }
                     EditorGUIUtility.labelWidth = 0;
                 }
+
+                EditorGUILayout.LabelField(new GUIContent("Legacy Gameboard Scale Inversion",
+                "Prior versions of the Tilt Five Unity SDK incorrectly inverted the scale of the " +
+                "Gameboard object, causing the virtual gameboard to get smaller, and virtual " +
+                "geometry viewed through the glasses to get larger, when the scale transform " +
+                "value was increased. Enabling this checkbox will cause the old behavior to be " +
+                "used. This is NOT recommended except when attempting to make content developed " +
+                "with an older SDK function. The setting for Player 1 applies to all players."));
+
+                using (new EditorGUI.IndentLevelScope())
+                {
+                    legacyInvertGameboardScaleProperty.boolValue = EditorGUILayout.Toggle(new GUIContent(
+                                "Invert Gameboard Scale"), legacyInvertGameboardScaleProperty.boolValue);
+                }
             }
 
             // Propagate the content scale ratio to any players that need it
@@ -134,6 +164,11 @@ namespace TiltFive
             physicalUnitsProperty.TryExportEnumValueIndex(playerTwoScaleSettingsProperty.FindPropertyRelative("contentScaleUnit"), copyScaleUnitsToPlayerTwo);
             physicalUnitsProperty.TryExportEnumValueIndex(playerThreeScaleSettingsProperty.FindPropertyRelative("contentScaleUnit"), copyScaleUnitsToPlayerThree);
             physicalUnitsProperty.TryExportEnumValueIndex(playerFourScaleSettingsProperty.FindPropertyRelative("contentScaleUnit"), copyScaleUnitsToPlayerFour);
+
+            // Propagate the legacy gameboard scale inversion to any players that need it
+            legacyInvertGameboardScaleProperty.TryExportBool(playerTwoScaleSettingsProperty.FindPropertyRelative("legacyInvertGameboardScale"), true);
+            legacyInvertGameboardScaleProperty.TryExportBool(playerThreeScaleSettingsProperty.FindPropertyRelative("legacyInvertGameboardScale"), true);
+            legacyInvertGameboardScaleProperty.TryExportBool(playerFourScaleSettingsProperty.FindPropertyRelative("legacyInvertGameboardScale"), true);
         }
 
         /// <summary>
@@ -145,6 +180,7 @@ namespace TiltFive
         {
             var scaleRatioProperty = scaleSettingsProperty.FindPropertyRelative("contentScaleRatio");
             var physicalUnitsProperty = scaleSettingsProperty.FindPropertyRelative("contentScaleUnit");
+            var legacyInvertGameboardScaleProperty = scaleSettingsProperty.FindPropertyRelative("legacyInvertGameboardScale");
 
             var copyPlayerOneScaleRatioProperty = scaleSettingsProperty.FindPropertyRelative("copyPlayerOneScaleRatio");
             var copyPlayerOneScaleUnitProperty = scaleSettingsProperty.FindPropertyRelative("copyPlayerOneScaleUnit");

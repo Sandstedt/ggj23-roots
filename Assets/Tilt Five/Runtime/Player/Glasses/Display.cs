@@ -182,6 +182,69 @@ namespace TiltFive
             return result == 0;
         }
 
+        internal static bool SetPlatformContext()
+        {
+            return Instance.SetPlatformContextImpl();
+        }
+
+        private bool SetPlatformContextImpl()
+        {
+            // Ensure the current thread is attached to the JVM
+            AndroidJNI.AttachCurrentThread();
+
+            IntPtr unityPlayerClazz = AndroidJNI.FindClass("com/unity3d/player/UnityPlayer");
+            if (unityPlayerClazz == IntPtr.Zero) {
+                Log.Error("Failed to obtain UnityPlayer class via JNI");
+                return false;
+            }
+
+            IntPtr currentActivityFieldId = AndroidJNI.GetStaticFieldID(unityPlayerClazz, "currentActivity", "Landroid/app/Activity;");
+            if (currentActivityFieldId == IntPtr.Zero) {
+                Log.Error("Failed to obtain UnityPlayer/currentActivity field via JNI");
+                return false;
+            }
+
+            IntPtr currentActivity = AndroidJNI.GetStaticObjectField(unityPlayerClazz, currentActivityFieldId);
+            if (currentActivity == IntPtr.Zero) {
+                Log.Error("Failed to obtain UnityPlayer/currentActivity instance via JNI");
+                return false;
+            }
+
+            IntPtr t5ActivityClazz = AndroidJNI.FindClass("com/tiltfive/client/TiltFiveActivity");
+            if (t5ActivityClazz == IntPtr.Zero) {
+                Log.Error("Failed to obtain TiltFive activity class via JNI");
+                return false;
+            }
+
+            IntPtr getPlatformContextMethodId = AndroidJNI.GetMethodID(t5ActivityClazz, "getT5PlatformContext", "()J");
+            if (getPlatformContextMethodId == IntPtr.Zero) {
+                Log.Error("Failed to obtain TiltFive getT5PlatformContext() method via JNI");
+                return false;
+            }
+
+            var context = AndroidJNI.CallLongMethod(currentActivity, getPlatformContextMethodId, new jvalue[] {});
+            if (context == 0) {
+                Log.Error("Failed to obtain TiltFive platform context via JNI");
+                return false;
+            }
+
+            // If we obtained a context from Java, send it to native
+            try {
+                int result = NativePlugin.SetPlatformContext(new IntPtr(context));
+                if (result != 0) {
+                    Log.Error("Tilt Five platform context set returned error: {0}", result);
+                }
+            } catch (System.DllNotFoundException e) {
+                Log.Info("Tilt Five plugin unavailable for set platform context: {0}", e);
+                return false;
+            } catch (Exception e) {
+                Log.Error("Failed to set Tilt Five platform context: {0}", e);
+                return false;
+            }
+
+            return true;
+        }
+
         /// <summary>Get whether any glasses are available</summary>
         ///
         /// <remarks>If you want to check whether glasses for a specific player index are available,

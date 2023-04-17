@@ -445,7 +445,7 @@ namespace TiltFive
 			logoPosition -= gameBoardSettings.currentGameBoard.transform.right * 5 * oneCentimeterLengthInMeters;
 			logoPosition -= gameBoardSettings.currentGameBoard.transform.forward * ((borderThickness / 2) - logoRadius) * oneCentimeterLengthInMeters;
 
-			var contentScaleFactor = scaleSettings.physicalMetersPerWorldSpaceUnit * gameBoardSettings.gameBoardScale;
+			var contentScaleFactor = scaleToUWRLD_UGBD;
 			Matrix4x4 mtxOrigin = Matrix4x4.TRS( Vector3.zero, Quaternion.identity, Vector3.one );
 			var mtxWorld = Matrix4x4.TRS( gameBoardSettings.gameBoardCenter + logoPosition / contentScaleFactor,
 				gameBoardSettings.currentGameBoard.rotation,
@@ -465,7 +465,7 @@ namespace TiltFive
 
         private void DrawGrid()
         {
-            var contentScaleFactor = scaleSettings.physicalMetersPerWorldSpaceUnit * gameBoardSettings.gameBoardScale;
+			var contentScaleFactor = scaleToUWRLD_UGBD;
             float heightOffsetInMeters = yGridOffset * scaleSettings.oneUnitLengthInMeters;
 			float lengthOffsetInMeters = Mathf.Max(gameboardDimensions.playableSpaceY.ToMeters - gameboardDimensions.playableSpaceX.ToMeters, 0f) / 2f;
 
@@ -632,7 +632,7 @@ namespace TiltFive
 		private bool TryGetGridPlanePosition(Ray ray, out Vector3 intersectPoint)
 		{
 			// Set up the collision plane
-            var planeOffsetY = (yGridOffset * scaleSettings.oneUnitLengthInMeters) / (scaleSettings.physicalMetersPerWorldSpaceUnit * gameBoardSettings.gameBoardScale);
+            var planeOffsetY = (yGridOffset * scaleSettings.oneUnitLengthInMeters) / scaleToUWRLD_UGBD;
             var gridPlane = new Plane(
 				gameBoardSettings.currentGameBoard.transform.up,
 				gameBoardSettings.currentGameBoard.transform.localToWorldMatrix.MultiplyPoint(planeOffsetY * Vector3.up));
@@ -666,7 +666,7 @@ namespace TiltFive
 
 			Gizmos.color = new Color (1f, 0.8320962f, 0.3803922f, gizmoAlpha);
 
-			var contentScaleFactor = scaleSettings.physicalMetersPerWorldSpaceUnit * gameBoardSettings.gameBoardScale;
+			var contentScaleFactor = scaleToUWRLD_UGBD;
 			float borderWidthInMeters = gameboardDimensions.borderWidth.ToMeters;
 			float lengthOffsetInMeters = Mathf.Max(usableGameBoardLengthInMeters - usableGameBoardWidthInMeters, 0f) / 2f;
 			var gameBoardTransform = gameBoardSettings.currentGameBoard.transform;

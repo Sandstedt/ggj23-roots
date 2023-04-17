@@ -669,7 +669,15 @@ namespace TiltFive
                     Log.Error(e.Message);
                 }
 
-                GameBoard.SetGameboardType(glassesHandle, glassesPoseResult.GameboardType);
+                if (result == 0)
+                {
+                  GameBoard.SetGameboardType(glassesHandle, glassesPoseResult.GameboardType);
+                }
+                else
+                {
+                  GameBoard.SetGameboardType(glassesHandle, GameboardType.GameboardType_None);
+                }
+
                 poseIsValid = result == 0 && glassesPoseResult.GameboardType != GameboardType.GameboardType_None;
                 glassesPose = glassesPoseResult;
                 return result == 0;
@@ -922,8 +930,7 @@ namespace TiltFive
                         }
                         if (glassesSettings.objectTemplate && null == baseObject)
                         {
-                            baseObject = GameObject.Instantiate(glassesSettings.objectTemplate);
-                            baseObject.transform.parent = headPoseRoot.transform;
+                            baseObject = GameObject.Instantiate(glassesSettings.objectTemplate, headPoseRoot.transform);
                             baseObject.name = $"{baseObject.transform.parent.name} - Prefab {playerIndex}";
 
 #if UNITY_2019_1_OR_NEWER && INPUTSYSTEM_AVAILABLE
@@ -1062,8 +1069,8 @@ namespace TiltFive
                     && spectatorGlassesHandle == glassesHandle;
 
                 // Get the glasses pose in Unity world-space.
-                float scaleToUGBD_UWRLD = scaleSettings.physicalMetersPerWorldSpaceUnit * gameBoardSettings.gameBoardScale;
                 float scaleToUWRLD_UGBD = scaleSettings.GetScaleToUWRLD_UGBD(gameBoardSettings.gameBoardScale);
+                float scaleToUGBD_UWRLD = 1.0f / scaleToUWRLD_UGBD;
 
                 // Set the game board transform on the SplitStereoCamera.
                 splitStereoCamera.posUGBD_UWRLD = gameboardPos_UWRLD.position;
@@ -1153,6 +1160,7 @@ namespace TiltFive
 
             public GlassesDeviceCore(GlassesHandle glassesHandle) : base(glassesHandle)
             {
+                Input.AddGlassesDevice(playerIndex);
                 glassesDevice = Input.GetGlassesDevice(playerIndex);
 
                 if(glassesDevice != null && glassesDevice.added)
@@ -1167,7 +1175,16 @@ namespace TiltFive
 
                 if(glassesDevice != null && glassesDevice.added)
                 {
+                    if (glassesDevice.LeftWand != null)
+                    {
+                        Input.RemoveWandDevice(playerIndex, ControllerIndex.Left);
+                    }
+                    if (glassesDevice.RightWand != null)
+                    {
+                        Input.RemoveWandDevice(playerIndex, ControllerIndex.Right);
+                    }
                     InputSystem.DisableDevice(glassesDevice);
+                    Input.RemoveGlassesDevice(playerIndex);
                 }
             }
 

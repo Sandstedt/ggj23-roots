@@ -95,7 +95,7 @@ namespace TiltFive
         private static DateTime lastScanAttempt = System.DateTime.MinValue;
 
         // This should likely become a query into the native library.
-        private static readonly double wandScanRate = 0.5d;
+        private static readonly double wandScanInterval = 0.5d;
 
         private static bool wandAvailabilityErroredOnce = false;
 
@@ -172,10 +172,8 @@ namespace TiltFive
             var currentTime = System.DateTime.Now;
             var timeSinceLastScan = currentTime - lastScanAttempt;
 
-            // Scan for wands if necessary.
-            // TODO: Implement more robust disconnect detection, communicate wand availability events to users, offer user option to swap wands.
-            if (timeSinceLastScan.TotalSeconds >= wandScanRate
-                && (!Input.GetWandAvailability(ControllerIndex.Right) || !Input.GetWandAvailability(ControllerIndex.Left)))
+            // Scan for wands if the scan interval has elapsed to catch newly connected wands.
+            if (timeSinceLastScan.TotalSeconds >= wandScanInterval)
             {
                 int result = 1;
 
@@ -1029,21 +1027,32 @@ namespace TiltFive
             {
                 if(Glasses.TryGetGlassesDevice(glassesHandle, out var glassesDevice))
                 {
+                    //Add the new Wand Device to the Input System only when a new Wand Core is being created
+                    Input.AddWandDevice(glassesDevice.PlayerIndex, controllerIndex);
                     wandDevice = Input.GetWandDevice(glassesDevice.PlayerIndex, controllerIndex);
                     InputSystem.QueueConfigChangeEvent(wandDevice);
-                    InputSystem.EnableDevice(wandDevice);
+                    if(controllerIndex == ControllerIndex.Right)
+                    {
+                        glassesDevice.RightWand = wandDevice;
+                    }
+                    else
+                    {
+                        glassesDevice.LeftWand = wandDevice;
+                    }
 
                     var inputUserCount = InputUser.all.Count;
                     var playerIndex = (int)glassesDevice.PlayerIndex;
                     var headPoseRoot = Glasses.GetPoseRoot(glassesDevice.PlayerIndex);
 
+                    //If a PlayerInput component exists for a specific player, pair our wand to that device, and make sure it's using the XR scheme
                     if (headPoseRoot != null && inputUserCount >= playerIndex)
                     {
                         var playerInput = headPoseRoot.GetComponentInChildren<PlayerInput>();
 
-                        if(playerInput != null)
+                        if(playerInput != null && playerInput.user.valid)
                         {
                             InputUser.PerformPairingWithDevice(wandDevice, playerInput.user);
+                            playerInput.user.ActivateControlScheme("XR");
                         }
                     }
                 }
@@ -1052,8 +1061,11 @@ namespace TiltFive
             public override void Dispose()
             {
                 base.Dispose();
-                InputSystem.QueueConfigChangeEvent(wandDevice);
-                InputSystem.DisableDevice(wandDevice);
+
+                if (Player.TryGetPlayerIndex(glassesHandle, out var playerIndex))
+                {
+                    Input.RemoveWandDevice(playerIndex, controllerIndex);
+                }
             }
 
             public override void GetLatestInputs()

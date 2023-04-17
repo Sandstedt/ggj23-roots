@@ -38,6 +38,10 @@ namespace TiltFive
             T5_StringUTF8 appVersion);
 
         [DllImport(PLUGIN_LIBRARY)]
+        public static extern int SetPlatformContext(
+            IntPtr platformContext);
+
+        [DllImport(PLUGIN_LIBRARY)]
         [return: MarshalAs(UnmanagedType.I4)]
         public static extern ServiceCompatibility GetServiceCompatibility();
 

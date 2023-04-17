@@ -1,3 +1,62 @@
+## [1.3.2] - Inquisitive Imps
+* Control Panel
+  * Glasses are now sorted by any "friendly name" assigned to them or their serial number
+
+* Glasses
+  * Platform stability fixes
+
+* Unity Plug-in (Developer SDK)
+  * *This is a recommended upgrade for projects currently using 1.3.0 or 1.3.1 SDKs*
+  * Fix a compile-time error when Input System is used in a project  (regression in 1.3.1 #922)
+  * Retrieve and assign Glasses for Player 1 and up based on the order defined by the Service and as seen in Control Panel instead of by Glasses serial number
+
+* Known Issues
+  * [Windows] Control Panel: Window position is not remembered between runs as expected #934
+  * Service: Glasses' Friendly name sorting is a strictly lexicographical ordering by UTF-8 code points #941
+  * [Android] Unity Plug-in: Some of the SDK examples have issues when built for Android #940
+
+## [1.3.1] - Inquisitive Imps
+* Control Panel
+  * (Windows/Linux) The Control Panel now remembers where it is located on your screen between runs
+
+* Glasses
+  * Fix for occasional rejected IMU samples due to a timestamp firmware bug on the IMU
+  * Fix some startup failures due to a timeout waiting for all modules to start
+  * Fix headset tracking loss when viewing content from angles near the corners of the GameBoard
+
+* Drivers and Tilt Five Software Install
+  * Fix stalls sending frames over USB where the completion of send could be delayed an extra frame
+  * Bugfixes around communication with the service including prevention of some data races
+  * Fix crash in Camera Viewer tool that could happen when unplugging Glasses
+  * (Windows) The system notification icon when no glasses are attached is now the Tilt Five logo
+  * Logging improvements
+
+* Android Platform (Beta)
+  * Add Android 10 or later as a supported platform for developers
+  * Add Tilt Five (Control Panel and Service) APK in the Developer SDK for loading on devices
+
+* Linux Platform (Experimental)
+  * Add Linux x86-64 binary Driver and Tilt Five Software tarball
+  * Add Linux Developer SDK tarball which includes the same content as the Windows SDK Installer
+
+* Developer Tools (Developer SDK)
+  * Remove the Wand Reflection executable demo
+  * Update tooling for Android builds of the SDK to make one APK for both Control Panel and Service
+
+* NDK Beta (Developer SDK)
+  * Update release notes in NDK documentation
+  * Add Android version of the NDK library
+  * Add Linux x86-64 version of the NDK library
+
+* Unity Plug-in (Developer SDK)
+  * Add an option to toggle inversion of the Gameboard `GameObject` transform scale, which was incorrectly inverted in all previous SDK versions, making it difficult to reason about how other Gameboard-relative objects would transform when scaling the Gameboard; to ease the transition for existing projects, the inverted behavior is being kept the default until at least version 1.4.0, but turning it off is strongly
+  advised for new projects
+  * Assign a parent transform for the player's head pose in the per-player prefab during instantiation instead of setting it immediately after
+  * Fix an issue in Wand discovery when using Input System, no longer assigns multiple Wands to the wrong user
+  * Fix conditions where without a valid Glasses pose, the Gameboard type property would return an invalid integer value of 0 instead of `GameboardType_None`
+  * Add Android ARMv7 and ARM64 libraries with minimum supported Unity version of 2019 LTS
+  * Add Linux x86-64 library
+
 ## [1.3.0] - Inquisitive Imps
 * Control Panel
   * Status for Glasses now has three sections for the Glasses, the application running, and Wands connected to the Glasses

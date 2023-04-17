@@ -68,14 +68,29 @@ namespace TiltFive
 
         public float oneUnitLengthInMeters => (new Length(1, contentScaleUnit)).ToMeters;
 
+        /// <summary>
+        /// Whether to enable the old, incorrect, behavior whereby the inverse of the gameboard
+        /// GameObject's scale was used to calculate scaleToUWRLD_UGBD.
+        /// </summary>
+        /// <remarks>
+        /// Setting this to false causes the correct use of the gameboard scale.
+        /// </remarks>
+        public bool legacyInvertGameboardScale = true;
+
         public const float MIN_CONTENT_SCALE_RATIO = 0.0000001f;
 
         public float GetScaleToUWRLD_UGBD(float gameboardScale)
         {
-            float scaleToUGBD_UWRLD = physicalMetersPerWorldSpaceUnit * gameboardScale;
-            float scaleToUWRLD_UGBD = scaleToUGBD_UWRLD > 0
-                ? 1f / scaleToUGBD_UWRLD
-                : 1f / float.Epsilon;
+            float scaleToUWRLD_UGBD = 0.0f;
+
+            if (legacyInvertGameboardScale) {
+                float scaleToUGBD_UWRLD = physicalMetersPerWorldSpaceUnit * gameboardScale;
+                scaleToUWRLD_UGBD = scaleToUGBD_UWRLD > 0
+                    ? 1f / scaleToUGBD_UWRLD
+                    : 1f / float.Epsilon;
+            } else {
+                scaleToUWRLD_UGBD = gameboardScale / physicalMetersPerWorldSpaceUnit;
+            }
 
             return scaleToUWRLD_UGBD;
         }

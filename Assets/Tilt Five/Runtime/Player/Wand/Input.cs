@@ -417,6 +417,59 @@ namespace TiltFive
                 InputSystem.QueueConfigChangeEvent(wandDevices[i, j]);
             }
         }
+
+        internal static void RemoveGlassesDevice(PlayerIndex playerIndex)
+        {
+            var glassesDevices = Input.glassesDevices;
+            int i = (int)playerIndex - 1;
+
+            // Destroy a GlassesDevice if it exists
+            if (glassesDevices[i] != null)
+            {
+                var preexistingGlassesDevice = InputSystem.GetDevice<GlassesDevice>($"Player{playerIndex}");
+                if (preexistingGlassesDevice != null)
+                {
+                    InputSystem.RemoveDevice(preexistingGlassesDevice);
+                    glassesDevices[i] = null;
+                }
+            }
+        }
+
+        internal static void RemoveWandDevice(PlayerIndex playerIndex, ControllerIndex controllerIndex)
+        {
+            var wandDevices = Input.wandDevices;
+            int i = (int)playerIndex - 1;
+            int j = (int)controllerIndex;
+
+            // Unfortunately, the enum ControllerIndex.Primary still exists, and Unity seems to have a habit
+            // of substituting its display name when we're trying to get the display name for ControllerIndex.Right.
+            // TODO: Localize
+            var handednessLabel = controllerIndex == ControllerIndex.Right ? "Right" : "Left";
+
+            // If we already know about a wandDevice corresponding to our input parameters, Remove the Device and let the system know if it's disappearance
+            if (wandDevices[i, j] != null && !wandDevices[i, j].added)
+            {
+                var wandDevice = wandDevices[i, j];
+                InputSystem.RemoveDevice(wandDevice);
+                InputSystem.QueueConfigChangeEvent(wandDevice);
+                wandDevices[i, j] = null;
+            }
+            else
+            {
+                // Otherwise, ask the input system if it has a matching wandDevice.
+                // This corner case (in which a matching wandDevice exists, but the static field in Player.cs is empty)
+                // can occur when reloading scripts. Unity's input system keeps the device alive, but this class suffers amnesia.
+                WandDevice currentWandDevice = InputSystem.GetDevice<WandDevice>($"Player{playerIndex}-{handednessLabel}Hand");
+
+                // If the input system does have a matching wandDevice, just destroy it
+                if (currentWandDevice != null)
+                {
+                    InputSystem.RemoveDevice(currentWandDevice);
+                    InputSystem.QueueConfigChangeEvent(currentWandDevice);
+                    wandDevices[i, j] = null;
+                }
+            }
+        }
 #endif
 
         #endregion Private Functions

@@ -18,6 +18,7 @@ using UnityEngine;
 
 #if UNITY_2019_1_OR_NEWER && INPUTSYSTEM_AVAILABLE
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 #endif
 
 using TiltFive;
@@ -143,9 +144,17 @@ namespace TiltFive
             Log.LogLevel = logSettings.level;
             Log.TAG = logSettings.TAG;
 
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                if (!Display.SetPlatformContext()) {
+                    Log.Warn("Failed to set application context.");
+                    enabled = false;
+                }
+            }
+
             if (!Display.SetApplicationInfo())
             {
-                Log.Warn("Failed to send application info to the T5 Control Panel.");
+                Log.Warn("Failed to send application info to the T5 Service.");
                 enabled = false;
             }
 
@@ -220,6 +229,32 @@ namespace TiltFive
                     spectatedPlayerPose.position,
                     spectatedPlayerPose.rotation);
             }
+
+#if UNITY_2019_1_OR_NEWER && INPUTSYSTEM_AVAILABLE
+            var devices = InputUser.GetUnpairedInputDevices();
+            if (devices.Count > 0)
+            {
+                foreach (InputDevice dev in devices)
+                {
+                    if (dev is WandDevice)
+                    {
+                        var headPoseRoot = Glasses.GetPoseRoot(((WandDevice)dev).playerIndex);
+
+                        if (headPoseRoot != null)
+                        {
+                            var playerInput = headPoseRoot.GetComponentInChildren<PlayerInput>();
+
+                            if (playerInput != null && playerInput.user.valid)
+                            {
+                                Log.Warn($"Unpaired Wand Device [{((WandDevice)dev).ControllerIndex}] found and paired to Player [{((WandDevice)dev).playerIndex}].");
+                                InputUser.PerformPairingWithDevice(dev, playerInput.user);
+                                playerInput.user.ActivateControlScheme("XR");
+                            }
+                        }
+                    }
+                }
+            }
+#endif
         }
 
 
@@ -327,8 +362,6 @@ namespace TiltFive
                 }
             }
 
-            Player.OnEnable(supportedPlayerCount);
-
             for (int i = 0; i < supportedPlayerCount; i++)
             {
                 var playerSettings = allPlayerSettings[i];
@@ -429,10 +462,7 @@ namespace TiltFive
             playerFourSettings.PlayerIndex = PlayerIndex.Four;
 
             supportedPlayerCount = (uint) Mathf.Clamp(supportedPlayerCount, 1, PlayerSettings.MAX_SUPPORTED_PLAYERS);
-            if (Application.isEditor && !Application.isPlaying)
-            {
-                Player.OnEnable(supportedPlayerCount);
-            }
+
             for (int i = 0; i < allPlayerSettings.Length; i++)
             {
                 var playerSettings = allPlayerSettings[i];
