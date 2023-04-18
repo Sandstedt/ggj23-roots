@@ -27,7 +27,7 @@ public class StaticReferences : MonoBehaviour
 
     private void Awake()
     {
-        winTxt.gameObject.SetActive(false);
+        winTxt.transform.gameObject.SetActive(false);
         playerSpawnPositions.Add(CharacterTeam.team1, player1spawnPosition);
         playerSpawnPositions.Add(CharacterTeam.team2, player2spawnPosition);
         playerGrips.Add(CharacterTeam.team1, playerGripP1);

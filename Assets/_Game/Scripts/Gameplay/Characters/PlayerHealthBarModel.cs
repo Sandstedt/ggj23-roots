@@ -46,7 +46,7 @@ namespace Assets._Game.Scripts.Gameplay.Characters
             if (lives == -1)
             {
                 StaticReferences.Instance.winTxt.text = "Player " + (team == CharacterTeam.team1 ? "2" : "1") + " won!";
-                StaticReferences.Instance.winTxt.gameObject.SetActive(true);
+                StaticReferences.Instance.winTxt.transform.gameObject.SetActive(true);
                 StaticReferences.Instance.RestartSceneDelay();
             }
         }

@@ -132,12 +132,13 @@ MonoBehaviour:
   nrSpawned: 0
   team: 0
   listPlayerModels:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2974780388344300392, guid: a4a64cadfa73341439863305fcb5dd35, type: 3}
+  - {fileID: 2974780388344300392, guid: a4a64cadfa73341439863305fcb5dd35, type: 3}
   plrController: {fileID: 0}
   playerPrefab: {fileID: 9066917891857753196, guid: 12784f226222d694290cc96e5d6eea11,
     type: 3}
   respawnPos: {fileID: 3076672058506942091}
+  playerTransform: {fileID: 0}
 --- !u!1001 &6165305851627753378
 PrefabInstance:
   m_ObjectHideFlags: 0

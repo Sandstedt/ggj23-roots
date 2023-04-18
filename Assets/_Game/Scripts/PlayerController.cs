@@ -5,6 +5,7 @@ using Assets._Game.Scripts.Gameplay.Characters;
 using Assets._Game.Scripts.Gameplay.Powerups;
 using TiltFive;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace _Game.Scripts
 {
@@ -19,7 +20,7 @@ namespace _Game.Scripts
 
         [SerializeField] private AnimancerComponent animancer;
         // [SerializeField] private Rigidbody rb;
-        public Camera playerCamera;
+        public Transform playerCamera;
         [SerializeField] private GameObject currentPlayerModel;
         private Vector3 movementDirection;
         public PlayerGrip playerGrip;
@@ -36,8 +37,15 @@ namespace _Game.Scripts
 
         private void Start()
         {
-            Debug.Log("current weapon set!");
             currentWeapon = weaponCrossBow;
+
+            _forward = Vector3.forward;
+            _right = Vector3.right;
+            
+            if (playerCamera == null)
+            {
+                playerCamera = Camera.main.transform;
+            }
         }
 
         public void WeaponPickup(WeaponType weaponType)
@@ -63,12 +71,41 @@ namespace _Game.Scripts
             currentWeapon.WeaponEnable();
         }
 
-        public void Jump()
+        private void Jump()
         {
             if (groundedPlayer)
             {
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
             }
+        }
+
+        public void OnJump(InputAction value)
+        {
+            var jump = value.ReadValue<bool>();
+            
+            Debug.Log("jump " + value.ReadValue<bool>());
+            
+            if (groundedPlayer && jump)
+            {
+                Jump();
+            }
+        }
+        
+        public void OnJump(InputAction.CallbackContext value)
+        {
+            var jump = value.ReadValueAsButton();
+            
+            Debug.Log("jump " + jump);
+            
+            if (jump)
+            {
+                Jump();
+            }
+        }
+
+        public void OnControlsChanged(PlayerInput player)
+        {
+            Debug.Log("Player  " + player.name + " has joined the party.");
         }
 
         public void Grip()
@@ -86,6 +123,10 @@ namespace _Game.Scripts
             StaticReferences.Instance.RestartScene();
         }
 
+        private Vector3 _forward;
+        private Vector3 _right;
+        private Vector3 _normalizedMove;
+        
         void Update()
         {
             groundedPlayer = controller.isGrounded;
@@ -93,37 +134,38 @@ namespace _Game.Scripts
             {
                 playerVelocity.y = 0f;
             }
-            var _camera = playerCamera.transform;
 
             //When placing a player directly for debugging this prevents null ref
-            if (_camera == null) return;
-
-            var forward = _camera.forward;
-            forward.y = 0;
-            forward.Normalize();
-
-            var right = _camera.right;
-            right.y = 0;
-            right.Normalize();
-
-            Vector3 move = Vector3.zero;
-            if (StaticReferences.Instance.isKeyboard)
+            if (playerCamera != null)
             {
-                move = new Vector3(UnityEngine.Input.GetAxis("Horizontal"), 0, UnityEngine.Input.GetAxis("Vertical"));
-            }
-            else
-            {
-                move = movementDirection;
-            }
+                _forward = playerCamera.forward;
+                _forward.y = 0;
+                _forward.Normalize();
 
-            if (move != Vector3.zero)
+                _right = playerCamera.right;
+                _right.y = 0;
+                _right.Normalize();
+            };
+
+
+            // Vector3 move = Vector3.zero;
+            // if (StaticReferences.Instance.isKeyboard)
+            // {
+            //     move = new Vector3(UnityEngine.Input.GetAxis("Horizontal"), 0, UnityEngine.Input.GetAxis("Vertical"));
+            // }
+            // else
+            // {
+            //     move = movementDirection;
+            // }
+
+            if (movementDirection != Vector3.zero)
             {
-                var normalizedMove = right * move.x + forward * move.z;
+                _normalizedMove = _right * movementDirection.x + _forward * movementDirection.z;
 
                 // gameObject.transform.forward = move + forward;
-                gameObject.transform.forward = normalizedMove;
-                playerVelocity.x = normalizedMove.x * playerSpeed;
-                playerVelocity.z = normalizedMove.z * playerSpeed;
+                gameObject.transform.forward = _normalizedMove;
+                playerVelocity.x = _normalizedMove.x * playerSpeed;
+                playerVelocity.z = _normalizedMove.z * playerSpeed;
                 animancer.Play(groundedPlayer ? plrAnimations.AnimWalk : plrAnimations.AnimJump, 0.2f);
             }
             else
@@ -131,11 +173,11 @@ namespace _Game.Scripts
                 animancer.Play(groundedPlayer ? plrAnimations.AnimIdle : plrAnimations.AnimJump, 0.2f);
             }
 
-            // Changes the height position of the player..
-            if (groundedPlayer && UnityEngine.Input.GetButtonDown("Jump"))
-            {
-                Jump();
-            }
+            // // Changes the height position of the player..
+            // if (groundedPlayer && UnityEngine.Input.GetButtonDown("Jump"))
+            // {
+            //     Jump();
+            // }
 
             playerVelocity.y += gravityValue * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
@@ -144,27 +186,47 @@ namespace _Game.Scripts
             playerVelocity.z = 0;
         }
 
-
-        // private void Update()
+        // public void OnMove(Vector2 direction)
         // {
-        //     if (movementDirection != Vector2.zero)
-        //     {
-        //         Move();
-        //     }
-        //
-        //     if (keyboard && Input.GetButtonDown("Horizontal"))
-        //     {
-        //         movementDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
-        //     }
-        //     if (keyboard && Input.GetButtonDown("Vertical"))
-        //     {
-        //         movementDirection = new Vector2(0, Input.GetAxisRaw("Vertical"));
-        //     }
+        //     
+        //     movementDirection = new Vector3(direction.x, 0, direction.y);
         // }
-
-        public void OnMove(Vector2 direction)
+        
+        private Vector2 _direction;
+        public void OnMove(InputValue value)
         {
-            movementDirection = new Vector3(direction.x, 0, direction.y);
+            _direction = value.Get<Vector2>();
+            Debug.Log("move " + _direction);
+            movementDirection = new Vector3(_direction.x, 0, _direction.y);
+        }
+
+        public void OnShoot(InputValue value)
+        {
+            float shootValue = value.Get<float>();
+            Debug.Log("Shoot value " + shootValue);
+            if (shootValue < 0.2f)
+            {
+                currentWeapon.FireWeapon();
+            }
+
+            if (shootValue < 0.1f)
+            {
+                GripRelease();
+            } else if (shootValue > 0.9f)
+            {
+                Grip();
+            }
+            
+        }
+        
+        public void OnJump(InputValue value)
+        {
+            bool shouldJump = value.Get<float>() > 0.5f;
+            Debug.Log("Jumo value " + value.Get<float>());
+            if (shouldJump)
+            {
+                Jump();
+            }
         }
 
         public void RespawnPlayerWithPlayerModel(GameObject model, Vector3 respawnPos)
@@ -187,10 +249,11 @@ namespace _Game.Scripts
 
             Destroy(oldModel);
         }
-
-        public void RespawnPlayer(Vector3 respawnPos)
+        
+        public void RespawnPlayer(Vector3 respawnPos, Quaternion respawnRot)
         {
             transform.position = respawnPos;
+            transform.rotation = respawnRot;
             playerHealth.PlayerRespawned();
         }
 

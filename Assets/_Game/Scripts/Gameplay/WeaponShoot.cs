@@ -55,17 +55,17 @@ public class WeaponShoot : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if (canFire && Input.GetButton("Fire1"))
-        {
-            FireWeapon();
-        }
-    }
+    // private void Update()
+    // {
+    //     // if (canFire && Input.GetButton("Fire1"))
+    //     // {
+    //     //     FireWeapon();
+    //     // }
+    // }
 
     public void FireWeapon()
     {
-        Debug.Log("FireWeapon");
+        // Debug.Log("FireWeapon");
         if (canFire)
         {
             StartCoroutine(SpawnMissile());

@@ -19,25 +19,28 @@ namespace Assets._Game.Scripts.Gameplay
         [SerializeField] private GameObject playerPrefab;
 
 
-        [SerializeField] Transform respawnPos;
+        // [SerializeField] Transform respawnPos;
+
+        // public Transform playerTransform;
 
 
         private void InstantiatePlayer()
         {
-            var p = Instantiate(playerPrefab, respawnPos.position, respawnPos.rotation);
+            // playerTransform = transform.parent;
+            
+            var p = Instantiate(playerPrefab, StaticReferences.Instance.playerSpawnPositions[team].position, StaticReferences.Instance.playerSpawnPositions[team].rotation);
             plrController = p.GetComponent<PlayerController>();
-            plrController.transform.position = respawnPos.position;
-            plrController.transform.rotation = respawnPos.rotation;
             plrController.playerHealth.characterRespawner = this;
             plrController.playerGrip = StaticReferences.Instance.playerGrips[team];
+            plrController.playerCamera = transform.parent;
+            
             if (StaticReferences.Instance.isKeyboard)
             {
-                plrController.playerCamera = Camera.main;
+                plrController.playerCamera = Camera.main.transform;
             }
             else
             {
-                plrController.playerCamera = this.gameObject.transform.parent.transform.Find("Left Eye Camera")
-                    .GetComponent<Camera>();
+                plrController.playerCamera = this.gameObject.transform.parent.transform;
             }
 
             Debug.Log("Instatiate " + p.name);
@@ -45,16 +48,16 @@ namespace Assets._Game.Scripts.Gameplay
 
         private void Start()
         {
-            respawnPos = StaticReferences.Instance.playerSpawnPositions[team];
+            // respawnPos = StaticReferences.Instance.playerSpawnPositions[team];
 
-            if (team == CharacterTeam.team1)
-            {
-                InstantiatePlayer();
-            }
-            else
-            {
-                StartCoroutine(DelayInstantiate());
-            }
+            InstantiatePlayer();
+            // if (team == CharacterTeam.team1)
+            // {
+            // }
+            // else
+            // {
+            //     StartCoroutine(DelayInstantiate());
+            // }
 
         }
 
@@ -76,13 +79,13 @@ namespace Assets._Game.Scripts.Gameplay
 
         private void SpawnNewCharacter()
         {
-            plrController.RespawnPlayer(respawnPos.position);
+            plrController.RespawnPlayer(StaticReferences.Instance.playerSpawnPositions[team].position, StaticReferences.Instance.playerSpawnPositions[team].rotation);
         }
 
-        IEnumerator DelayInstantiate()
-        {
-            yield return new WaitForSeconds(0.2f);
-            InstantiatePlayer();
-        }
+        // IEnumerator DelayInstantiate()
+        // {
+        //     yield return new WaitForSeconds(0.2f);
+        //     InstantiatePlayer();
+        // }
     }
 }
